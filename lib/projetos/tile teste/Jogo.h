@@ -1,5 +1,8 @@
 #pragma once
 #include "libUnicornio.h"
+#include "InputJogo.h"
+
+
 
 class Jogo
 {
@@ -11,5 +14,9 @@ public:
 	void finalizar();
 
 	void executar();
+
+private:
+	InputJogo input;
+	
 };
 

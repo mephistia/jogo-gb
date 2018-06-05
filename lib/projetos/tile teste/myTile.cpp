@@ -18,4 +18,21 @@ void myTile::createTile(int id, std::string nome, std::string caminho, bool isSo
 	this->caminho = caminho;
 	this->isSolid = isSolid;
 	sprite.setSpriteSheet(nome);
+
+}
+
+bool myTile::getSolid()
+{
+	return isSolid;
+}
+
+int myTile::getId()
+{
+	return id;
+}
+
+Sprite myTile::getSprite()
+{
+	
+	return sprite;
 }

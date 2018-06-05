@@ -99,15 +99,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="InputJogo.cpp" />
     <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="Mage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="myTile.cpp" />
     <ClCompile Include="myTilemap.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InputJogo.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Mage.h" />
     <ClInclude Include="myTile.h" />
     <ClInclude Include="myTilemap.h" />
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,12 +10,18 @@ public:
 
 	void createTile(int id, std::string nome, std::string caminho, bool isSolid);
 
+	bool getSolid();
+	int getId();
+	Sprite getSprite();
+
+
 private:
 	bool isSolid;
 	int id;
 	std::string nome;
 	std::string caminho;
 	Sprite sprite;
+	
 
 };
 

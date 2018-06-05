@@ -39,6 +39,7 @@ public:
 
 	// sprite
 	void atualizar();
+
 	void setDestino(float x, float y);
 	bool estaMovendo();
 
