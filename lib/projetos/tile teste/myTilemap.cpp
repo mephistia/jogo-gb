@@ -28,11 +28,8 @@ void myTilemap::ler(std::string arquivo)
 		for (int i = 0; i < totalTiles; i++) {
 			tilemap >> id >> nome >> caminho >> solido;
 
-			gRecursos.carregarSpriteSheet(nome, caminho, 1, 1);
-
 			tiles[i].createTile(id, nome, caminho, solido);
 		
-
 		}
 
 		tilemap >> idmapa;

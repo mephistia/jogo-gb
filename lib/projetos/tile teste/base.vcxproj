@@ -106,6 +106,8 @@
     <ClCompile Include="myTile.cpp" />
     <ClCompile Include="myTilemap.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Thief.cpp" />
+    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputJogo.h" />
@@ -114,6 +116,8 @@
     <ClInclude Include="myTile.h" />
     <ClInclude Include="myTilemap.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Thief.h" />
+    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

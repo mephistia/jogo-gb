@@ -61,13 +61,6 @@ void Player::movBaixo()
 	sprite.setAnimacao(BAIXO);
 }
 
-void Player::atualizar()
-{
-	if (moving)
-		sprite.avancarAnimacao();
-}
-
-
 bool Player::estaMovendo()
 {
 	return moving;
