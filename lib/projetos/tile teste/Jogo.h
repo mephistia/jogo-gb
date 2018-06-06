@@ -17,6 +17,7 @@ public:
 
 private:
 	InputJogo input;
+	int randMapa;
 	
 };
 
