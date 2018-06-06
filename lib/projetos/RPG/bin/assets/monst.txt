@@ -1,0 +1,4 @@
+3
+1 7 2 assets/demonio.png Demonio 
+2 3 3 assets/flor.png Flor 
+3 5 1 assets/slime.png Slime 

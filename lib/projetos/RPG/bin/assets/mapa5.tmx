@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles" tilewidth="32" tileheight="32">
+  <image source="../../../jogoGA/bin/assets/tiles.png" width="256" height="320"/>
+ </tileset>
+ <layer name="cdt1" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJztzaERAAAIBKA3uv/CDmHyJJCpJAXASb3g9/v9/p//AB8rCRk=
+  </data>
+ </layer>
+ <layer name="cdt2" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJzFldkKgzAURINQX4pv/Ym22n3f7b63//81nYJCCTbJjTc6cBA04yQhOr4Qwi8ZLnmEseGf/BrfdLTzoay/Sny3ibj2PwIt0AYdiznICgy9YXIdghEYgwlDPlVLsAJrsCkh/wCO4ATOxGyO/Ad4ghd4F5RPPf9ZZyrNl78tisr+/6n8oeLZr78OGqBp6KkY5pvo6++CHuiDgYU/b/4UzMAcLAx9aU9w5MdgC3Zgb+HPm38BV3AD9+S+aQ+6PL8qUfY/sswPhL7bXK9f1W1eAfm6buPMz/qny90mj3G9fl23ceTr+sBlf3wAZooSBg==
+  </data>
+ </layer>
+ <objectgroup name="Objetos" width="32" height="24">
+  <object name="Player" x="192" y="640" width="32" height="64"/>
+  <object name="tesouro1" type="tesouro1" x="702" y="256" width="32" height="32">
+   <properties>
+    <property name="Descricao" value=""/>
+    <property name="NomeItem" value=""/>
+   </properties>
+  </object>
+  <object name="tesouro2" type="tesouro2" x="704" y="160" width="32" height="32">
+   <properties>
+    <property name="Descricao" value=""/>
+    <property name="NomeItem" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Monstros" width="32" height="24">
+  <object name="monstro4" type="Monstro4" x="416" y="480" width="32" height="32">
+   <properties>
+    <property name="Atk" value="0"/>
+    <property name="Def" value="0"/>
+    <property name="Vida" value="0"/>
+   </properties>
+  </object>
+  <object name="monstro3" type="Monstro3" x="352" y="160" width="32" height="32">
+   <properties>
+    <property name="Atk" value="0"/>
+    <property name="Def" value="0"/>
+    <property name="Vida" value="0"/>
+   </properties>
+  </object>
+  <object name="monstro2" type="Monstro2" x="160" y="256" width="32" height="32">
+   <properties>
+    <property name="Atk" value="0"/>
+    <property name="Def" value="0"/>
+    <property name="Vida" value="0"/>
+   </properties>
+  </object>
+  <object name="monstro5" type="Monstro5" x="320" y="288" width="32" height="32">
+   <properties>
+    <property name="Atk" value="0"/>
+    <property name="Def" value="0"/>
+    <property name="Vida" value="0"/>
+   </properties>
+  </object>
+  <object name="monstro1" type="Monstro1" x="480" y="128" width="32" height="32">
+   <properties>
+    <property name="Atk" value="0"/>
+    <property name="Def" value="0"/>
+    <property name="Vida" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
