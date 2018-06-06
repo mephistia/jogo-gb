@@ -173,7 +173,7 @@ void InputJogo::atualizarThief()
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_CIMA]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (thief.getY() / 32) - 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid()) {
 					thief.movCima();
 				}
 			}
@@ -254,4 +254,119 @@ void InputJogo::setPosInicial1()
 	else if (getClass() == 3) {
 		thief.setPos(5, 1);
 	}
+}
+
+void InputJogo::setPosPorta()
+{
+	// se o mapa é o primeiro
+	if (mapa[mapaAtual].getFirst()) {
+		if (getClass() == 1) {
+
+			// se for porta vertical e em cima for solido
+			if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).getSolid()) {
+				mage.setPos((mage.getX() / 32), (mage.getY() / 32) + 2);
+				mage.setAnimBaixo();
+				mapa[mapaAtual].setFirst(false);
+			}
+
+			// se for porta vertical e embaixo for solido
+			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).getSolid()) {
+				mage.setPos((mage.getX()/32), (mage.getY()/32) - 2);
+				mage.setAnimCima();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta horizontal e na direita for solido
+			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).getSolid()) {
+				mage.setPos((mage.getX()/32) - 2 , (mage.getY()/32));
+				mage.setAnimEsq();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta horizontal e na esquerda for solido
+			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).getSolid()) {
+				mage.setPos((mage.getX()/32) +2, (mage.getY()/32));
+				mage.setAnimDir();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+		}
+
+		else if (getClass() == 2) {
+			// se for porta vertical e em cima for solido
+			if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getSolid()) {
+				warrior.setPos((warrior.getX()/32), (warrior.getY()/32) + 2);
+				warrior.setAnimBaixo();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta vertical e embaixo for solido
+			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getSolid()) {
+				warrior.setPos((warrior.getX() / 32), (warrior.getY() / 32) - 2);
+				warrior.setAnimCima();
+				mapa[mapaAtual].setFirst(false);
+
+
+			}
+
+			// se for porta horizontal e na direita for solido
+			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getSolid()) {
+				warrior.setPos((warrior.getX() / 32) - 2, (warrior.getY() / 32));
+				warrior.setAnimEsq();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta horizontal e na esquerda for solido
+			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getSolid()) {
+				warrior.setPos((warrior.getX() / 32) + 2, (warrior.getY() / 32));
+				warrior.setAnimDir();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+		}
+
+		else if (getClass() == 3) {
+			// se for porta vertical e em cima for solido
+			if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid()) {
+				thief.setPos((thief.getX() / 32), (thief.getY() / 32) + 2);
+				thief.setAnimBaixo();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta vertical e embaixo for solido
+			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getSolid()) {
+				thief.setPos((thief.getX() / 32), (thief.getY() / 32) - 2);
+				thief.setAnimCima();
+				mapa[mapaAtual].setFirst(false);
+
+
+			}
+
+			// se for porta horizontal e na direita for solido
+			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getSolid()) {
+				thief.setPos((thief.getX() / 32) -2, (thief.getY() / 32));
+				thief.setAnimEsq();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+
+			// se for porta horizontal e na esquerda for solido
+			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getSolid()) {
+				thief.setPos((thief.getX() / 32) + 2, (thief.getY() / 32));
+				thief.setAnimDir();
+				mapa[mapaAtual].setFirst(false);
+
+			}
+		}
+	}
+}
+
+void InputJogo::setFirstMap()
+{
+	mapa[mapaAtual].setFirst(true);
 }

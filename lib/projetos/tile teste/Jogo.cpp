@@ -12,6 +12,9 @@ void Jogo::inicializar()
 {
 	uniInicializar(1280, 768, false, "Generic Dungeon");
 
+	srand(time(0));
+
+
 	//ler tiles
 	input.carregarTiles("assets/tiles/tiles.txt");
 
@@ -31,16 +34,19 @@ void Jogo::inicializar()
 	input.iniciaWarrior("warrior");
 	
 	// selecionar rand teste
-	int r = rand() % 2 + 1;
+	int r = uniRandEntre(1, 3);
 	input.selectClass(r);
 
 	// mapa aleatorio
-	randMapa = rand() % 1;
+	randMapa = uniRandEntre(0, 1);
 	input.setMapaAtual(randMapa);
+	// mapa atual é o primeiro
+	input.setFirstMap();
 
 	// setar posições iniciais de capa mapa
 	if (randMapa == 0) {
 		input.setPosInicial0();
+		
 	}
 	else if (randMapa == 1) {
 		input.setPosInicial1();
@@ -67,7 +73,8 @@ void Jogo::executar()
 		// desenhar primeiro mapa aleatoriamente
 		input.getMap(randMapa).desenhar();
 
-		// setar posição do jogador se o tile for porta.
+		// setar posição do jogador se o tile for porta e a sala nao foi visitada
+		input.setPosPorta();
 
 
 
@@ -82,7 +89,7 @@ void Jogo::executar()
 		}
 		else if (input.getClass() == 3) {
 			input.atualizarThief();
-			input.atualizarThief();
+			input.desenharThief();
 		}
 		
 

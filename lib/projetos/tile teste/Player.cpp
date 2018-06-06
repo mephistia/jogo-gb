@@ -71,6 +71,26 @@ void Player::desenhar()
 	sprite.desenhar(x, y);
 }
 
+void Player::setAnimDir()
+{
+	sprite.setAnimacao(DIR);
+}
+
+void Player::setAnimEsq()
+{
+	sprite.setAnimacao(ESQ);
+}
+
+void Player::setAnimBaixo()
+{
+	sprite.setAnimacao(BAIXO);
+}
+
+void Player::setAnimCima()
+{
+	sprite.setAnimacao(CIMA);
+}
+
 int Player::getAtk()
 {
 	return atk;

@@ -38,6 +38,8 @@ public:
 	void setPosInicial0();
 	void setPosInicial1();
 
+	void setPosPorta();
+	void setFirstMap();
 
 
 private:

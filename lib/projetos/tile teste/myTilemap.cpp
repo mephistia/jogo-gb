@@ -4,6 +4,8 @@
 
 myTilemap::myTilemap()
 {
+	visited = false;
+	first = false;
 }
 
 
@@ -70,4 +72,24 @@ void myTilemap::desenhar()
 		for (int l = 0; l < 24; l++) {
 			getTile(c, l).getSprite().desenhar(c * 32, l * 32);
 		}
+}
+
+bool myTilemap::getVisited()
+{
+	return visited;
+}
+
+void myTilemap::setVisited(bool v)
+{
+	visited = v;
+}
+
+bool myTilemap::getFirst()
+{
+	return first;
+}
+
+void myTilemap::setFirst(bool f)
+{
+	first = f;
 }

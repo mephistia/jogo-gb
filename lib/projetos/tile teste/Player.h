@@ -53,11 +53,13 @@ public:
 	void movEsq();
 	void movCima();
 	void movBaixo();
-	void atualizar();
 	bool estaMovendo();
 	void desenhar();
 
-
+	void setAnimDir();
+	void setAnimEsq();
+	void setAnimBaixo();
+	void setAnimCima();
 
 	// gets
 	int getAtk();

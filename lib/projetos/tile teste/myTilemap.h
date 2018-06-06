@@ -15,10 +15,17 @@ public:
 	myTile getTile(int x, int y);
 	void desenhar();
 
+	bool getVisited();
+	void setVisited(bool v);
+	
+	bool getFirst();
+	void setFirst(bool f);
+
 private:
 	myTile * tiles;
 	int totalTiles, tileSize;
 	int map[32][24]; // 32 colunas, 24 linhas
 	int mapId;
+	bool visited, first;
 };
 
