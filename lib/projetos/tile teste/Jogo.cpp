@@ -52,6 +52,7 @@ void Jogo::inicializar()
 		input.setPosInicial1();
 	}
 
+	idTelas = telaJogo;
 }
 
 void Jogo::finalizar()
@@ -69,32 +70,83 @@ void Jogo::executar()
 	{
 		uniIniciarFrame();
 
-
-		// desenhar primeiro mapa aleatoriamente
-		input.getMap(randMapa).desenhar();
-
-		// setar posição do jogador se o tile for porta e a sala nao foi visitada
-		input.setPosPorta();
-
-
-
-		// desenhar mago
-		if (input.getClass() == 1) {
-			input.atualizarMage();
-			input.desenharMage();
+		switch (idTelas) {
+		case telaMenu:
+			tMenu();
+			break;
+		case telaRanking:
+			tRanking();
+			break;
+		case telaCreditos:
+			tCreditos();
+			break;
+		case telaCarregar:
+			tCarregar();
+			break;
+		case telaJogo:
+			tJogo();
+			break;
+		case telaSelect:
+			tSelect();
+			break;
+		case telaInventario:
+			tInventario();
+			break;
 		}
-		else if (input.getClass() == 2) {
-			input.atualizarWarrior();
-			input.desenharWarrior();
-		}
-		else if (input.getClass() == 3) {
-			input.atualizarThief();
-			input.desenharThief();
-		}
-		
 
 
 		
 		uniTerminarFrame();
 	}
+}
+
+void Jogo::tMenu()
+{
+}
+
+void Jogo::tRanking()
+{
+}
+
+void Jogo::tCreditos()
+{
+}
+
+void Jogo::tCarregar()
+{
+}
+
+void Jogo::tJogo()
+{
+
+	// desenhar primeiro mapa aleatoriamente
+	input.getMap(randMapa).desenhar();
+
+	// setar posição do jogador se o tile for porta e a sala nao foi visitada
+	input.setPosPorta();
+
+
+
+	// desenhar mago
+	if (input.getClass() == 1) {
+		input.atualizarMage();
+		input.desenharMage();
+	}
+	else if (input.getClass() == 2) {
+		input.atualizarWarrior();
+		input.desenharWarrior();
+	}
+	else if (input.getClass() == 3) {
+		input.atualizarThief();
+		input.desenharThief();
+	}
+
+}
+
+void Jogo::tSelect()
+{
+}
+
+void Jogo::tInventario()
+{
 }

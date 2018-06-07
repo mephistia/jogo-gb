@@ -2,7 +2,19 @@
 #include "libUnicornio.h"
 #include "InputJogo.h"
 
+enum idTelas {
 
+	// telas do enunciado
+	telaMenu,
+	telaRanking,
+	telaCreditos,
+	telaCarregar,
+	telaJogo,
+
+	// telas auxiliares
+	telaSelect,
+	telaInventario
+};
 
 class Jogo
 {
@@ -15,9 +27,18 @@ public:
 
 	void executar();
 
+	void tMenu();
+	void tRanking();
+	void tCreditos();
+	void tCarregar();
+	void tJogo();
+	void tSelect();
+	void tInventario();
+	
+
 private:
 	InputJogo input;
-	int randMapa;
+	int randMapa, idTelas;
 	
 };
 
