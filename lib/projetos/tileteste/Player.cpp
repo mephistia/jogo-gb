@@ -14,6 +14,7 @@ Player::~Player()
 void Player::inicializar(std::string sheet)
 {
 	sprite.setSpriteSheet(sheet);
+	caminho = sheet;
 
 	ancoraX = 0.5;
 	ancoraY = 0.8;
@@ -22,6 +23,7 @@ void Player::inicializar(std::string sheet)
 
 	sprite.setVelocidadeAnimacao(3.5);
 
+
 	// valores default
 	moving = false;
 	isDead = false;
@@ -29,6 +31,11 @@ void Player::inicializar(std::string sheet)
 	vel = 32.0;
 	x = 0;
 	y = 0;
+
+	setAtk();
+	setDef();
+	setHP();
+
 }
 
 void Player::setPos(float x, float y)

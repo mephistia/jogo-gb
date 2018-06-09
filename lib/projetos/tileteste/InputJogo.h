@@ -6,6 +6,7 @@
 #include "Monster.h"
 #include <fstream>
 
+
 class InputJogo
 {
 public:
@@ -30,7 +31,7 @@ public:
 	void desenharThief();
 
 	void lerMonstros(std::string arq);
-	void iniciaMonstros();
+	void iniciaMonstros(int n);
 	void atualizarMonstros();
 	void desenharMonstros();
 
@@ -62,12 +63,13 @@ public:
 	void desenhar();
 	void atualizar();
 
+
 private:
 	myTilemap mapa[6];
-	int mapaAtual;
+	int mapaAtual, nMonstros;
 	Mage mage;
 	Warrior warrior;
 	Thief thief;
-	Monster *mon;
+	Monster *monType;
 };
 

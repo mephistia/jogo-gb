@@ -19,6 +19,7 @@ protected:
 	bool isDead, moving;
 
 	Sprite sprite;
+	std::string caminho;
 
 	float x, y;
 	float vel;
@@ -72,6 +73,7 @@ public:
 	Sprite getSprite();
 	float getAncoraX();
 	float getAncoraY();
+	
 
 	// sets iniciais por sorteio
 	void setAtk();

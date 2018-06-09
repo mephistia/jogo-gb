@@ -200,32 +200,72 @@ void InputJogo::desenharThief()
 
 void InputJogo::lerMonstros(std::string arq)
 {
-	int nMonstros, id, def, hp;
+	int id, def, hp;
 	std::string caminho, nome;
 	ifstream monstros(arq);
 
 	if (monstros) {
 		monstros >> nMonstros;
-		mon = new Monster[nMonstros];
+
+		// objetos para pegar os tipos
+		monType = new Monster[nMonstros];
 
 		for (int i = 0; i < nMonstros; i++) {
 			monstros >> id >> nome >> def >> hp >> caminho;
-			mon[i].mInicializar(id, nome, def, hp, caminho);
+			monType[i].mInicializar(id, nome, def, hp, caminho);
 		}
 	}
 }
 
-void InputJogo::iniciaMonstros()
+// inicializa os monstros para o mapa atual
+void InputJogo::iniciaMonstros(int n)
 {
-	
+	if (!mapa[mapaAtual].getMonstersDone()) {
+
+		mapa[mapaAtual].setNMonsters(n);
+		for (int i = 0; i < n; i++) {
+
+			// sortear um tipo
+			int random = uniRandEntre(0, nMonstros - 1);
+
+			// inicializar o monstro do mapa com os mesmos dados do tipo random
+			mapa[mapaAtual].getMonster(i).mInicializar(monType[random].getId(), monType[random].getNome(), monType[random].getDef(), monType[random].getHP(), monType[random].getCaminho());
+
+			// setar uma posição para o monstro (em tiles)
+			int rx, ry;
+			do {
+				rx = uniRandEntre(0, 29);
+				ry = uniRandEntre(0, 21);
+			} while (isSolid(rx + 2, ry + 2) || isSolid(rx + 1, ry + 1) ||
+				mapa[mapaAtual].getTile(rx + 2, ry + 2).isMonster() || mapa[mapaAtual].getTile(rx + 1, ry + 1).isMonster() ||
+				mapa[mapaAtual].getTile(rx, ry).isMonster() || isSolid(rx, ry));
+
+
+			mapa[mapaAtual].getMonster(i).setPos(rx, ry);
+			mapa[mapaAtual].getTile(rx, ry).setMonster(true);
+		
+		
+		}
+
+		mapa[mapaAtual].setMonstersDone(true);
+	}
 }
 
 void InputJogo::atualizarMonstros()
 {
+	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+		mapa[mapaAtual].getMonster(i).setAnimBaixo();
+
+	}
 }
 
 void InputJogo::desenharMonstros()
 {
+	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+
+
+		mapa[mapaAtual].getMonster(i).desenhar();
+	}
 }
 
 int InputJogo::getMapaAtual()
@@ -417,10 +457,13 @@ void InputJogo::setOpenChest(int rx, int ry)
 
 bool InputJogo::isSolid(int x, int y)
 {
-	if (mapa[mapaAtual].getTile(x, y).getSolid())
-		return true;
-	else
-		return false;
+	if (mapa[mapaAtual].getPos(x,y)!= NULL) {
+		if (mapa[mapaAtual].getTile(x, y).getSolid())
+			return true;
+		else
+			return false;
+	}
+
 	
 }
 
@@ -470,6 +513,8 @@ Sprite InputJogo::getSpriteBau()
 
 void InputJogo::desenhar()
 {
+	desenharMonstros();
+
 	if (getClass() == 1) {
 		mage.desenhar();
 	}
@@ -483,6 +528,8 @@ void InputJogo::desenhar()
 
 void InputJogo::atualizar()
 {
+	atualizarMonstros();
+
 	if (getClass() == 1) {
 		atualizarMage();
 	}

@@ -100,6 +100,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="InputJogo.cpp" />
+    <ClCompile Include="Itens.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="main.cpp" />
@@ -112,11 +113,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="InputJogo.h" />
+    <ClInclude Include="Itens.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Lista.h" />
     <ClInclude Include="Mage.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="myTile.h" />
     <ClInclude Include="myTilemap.h" />
+    <ClInclude Include="Nodo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="Warrior.h" />

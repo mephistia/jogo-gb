@@ -6,6 +6,8 @@ myTilemap::myTilemap()
 {
 	visited = false;
 	first = false;
+	monstersDone = false;
+	numMonsters = 0;
 }
 
 
@@ -103,4 +105,30 @@ Sprite myTilemap::getBauSprite()
 {
 	// retorna sprite do bau fechado
 	return tiles[8].getSprite();
+}
+
+bool myTilemap::getMonstersDone()
+{
+	return monstersDone;
+}
+
+void myTilemap::setMonstersDone(bool d)
+{
+	monstersDone = d;
+}
+
+void myTilemap::setNMonsters(int n)
+{
+	numMonsters = n;
+	m = new Monster[n];
+}
+
+int myTilemap::getNMonsters()
+{
+	return numMonsters;
+}
+
+Monster myTilemap::getMonster(int posArray)
+{
+	return m[posArray];
 }

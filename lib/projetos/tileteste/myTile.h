@@ -14,6 +14,10 @@ public:
 	int getId();
 	Sprite getSprite();
 
+	void setSolid(bool s);
+
+	void setMonster(bool b);
+	bool isMonster();
 
 
 private:
@@ -22,7 +26,9 @@ private:
 	std::string nome;
 	std::string caminho;
 	Sprite sprite;
+
 	
+	bool monster;
 
 };
 

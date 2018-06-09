@@ -4,6 +4,7 @@
 
 myTile::myTile()
 {
+	monster = false;
 }
 
 
@@ -35,5 +36,20 @@ Sprite myTile::getSprite()
 {
 	
 	return sprite;
+}
+
+void myTile::setSolid(bool s)
+{
+	isSolid = s;
+}
+
+void myTile::setMonster(bool b)
+{
+	monster = b;
+}
+
+bool myTile::isMonster()
+{
+	return monster;
 }
 

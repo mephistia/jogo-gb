@@ -2,6 +2,7 @@
 #include "myTile.h"
 #include <iostream>
 #include <fstream>
+#include "Monster.h"
 
 class myTilemap
 {
@@ -25,11 +26,19 @@ public:
 
 	Sprite getBauSprite();
 
+	bool getMonstersDone();
+	void setMonstersDone(bool d);
+
+	void setNMonsters(int n);
+	int getNMonsters();
+	Monster getMonster(int posArray);
+
 private:
 	myTile * tiles;
 	int totalTiles, tileSize;
 	int map[32][24]; // 32 colunas, 24 linhas
-	int mapId;
-	bool visited, first;
+	int mapId, numMonsters;
+	bool visited, first, monstersDone;
+	Monster *m;
 };
 

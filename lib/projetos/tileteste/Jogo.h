@@ -41,7 +41,7 @@ public:
 
 private:
 	InputJogo input;
-	int randMapa, idTelas, *rx, *ry, numBaus;
+	int randMapa, idTelas, *rx, *ry, numBaus, numMonstros;
 	
 };
 

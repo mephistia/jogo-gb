@@ -10,7 +10,7 @@ Jogo::~Jogo()
 
 void Jogo::inicializar()
 {
-	uniInicializar(1280, 768, false, "Generic Dungeon");
+	uniInicializar(1024, 768, false, "Generic Dungeon");
 
 	srand(time(0));
 
@@ -27,11 +27,21 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("warrior", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/warrior.png", 4, 4);
 	gRecursos.carregarSpriteSheet("thief", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/thief.png", 4, 4);
 
+	// ler sprites de monstros
+	gRecursos.carregarSpriteSheet("Rat", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/mrat.png", 4, 4);
+	gRecursos.carregarSpriteSheet("Bat", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/mbat.png", 4, 4);
+	gRecursos.carregarSpriteSheet("Ghost", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/ghost.png", 4, 4);
+
+	// ler monstros
+	input.lerMonstros("C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/monsters.txt");
+
 
 	// inicializar classes
 	input.iniciaMage("mage");
 	input.iniciaThief("thief");
 	input.iniciaWarrior("warrior");
+
+	
 	
 	// selecionar rand teste
 	int r = uniRandEntre(1, 3);
@@ -40,6 +50,7 @@ void Jogo::inicializar()
 	// mapa aleatorio
 	randMapa = uniRandEntre(0, 1);
 	input.setMapaAtual(randMapa);
+
 	// mapa atual é o primeiro
 	input.setFirstMap();
 
@@ -121,7 +132,7 @@ void Jogo::tCarregar()
 
 void Jogo::tJogo()
 {
-
+	
 	// desenhar primeiro mapa aleatoriamente
 	input.getMap(randMapa).desenhar();
 
@@ -133,11 +144,13 @@ void Jogo::tJogo()
 	colisoes();
 
 
-	// atualizar jogador
+	// atualizar 
 	input.atualizar();
 
-	// desenhar jogador
+
+	// desenhar 
 	input.desenhar();
+
 	
 
 }
@@ -152,7 +165,11 @@ void Jogo::tInventario()
 
 void Jogo::pos()
 {
-	// numero de baus
+	// monstros no mapa
+	numMonstros = 3; /*uniRandEntre(0, 5);*/
+	input.iniciaMonstros(numMonstros);
+
+	// baus
 	numBaus = uniRandEntre(0, 2);
 	rx = new int[numBaus];
 	ry = new int[numBaus];
@@ -160,13 +177,17 @@ void Jogo::pos()
 	for (int i = 0; i < numBaus; i++) {
 	
 		do {
-			rx[i] = uniRandEntre(0, 31);
-			ry[i] = uniRandEntre(0, 23);
-		} while (input.isSolid(rx[i], ry[i]) && input.isSolid(rx[i] + 1, ry[i] + 1) && input.isSolid(rx[i] + 2, ry[i] + 2));
+			rx[i] = uniRandEntre(0, 29);
+			ry[i] = uniRandEntre(0, 21);
+		} while (input.isSolid(rx[i] + 2, ry[i] + 2) || input.isSolid(rx[i] + 1, ry[i] + 1) ||
+			    input.getMap(randMapa).getTile(rx[i]+2,ry[i]+2).isMonster() || input.getMap(randMapa).getTile(rx[i] + 1, ry[i] + 1).isMonster() ||
+				input.getMap(randMapa).getTile(rx[i], ry[i]).isMonster() || input.isSolid(rx[i],ry[i]));
 
 	
 		input.setChests(rx[i], ry[i]);
 	}
+
+
 }
 
 void Jogo::colisoes()
