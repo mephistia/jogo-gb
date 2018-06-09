@@ -31,7 +31,7 @@ void InputJogo::carregarTiles(std::string arq)
 	bool solido;
 
 	ifstream tiles(arq);
-	if (tiles) {
+	if (tiles.is_open()) {
 		tiles >> totalTiles;
 
 		for (int i = 0; i < totalTiles; i++) {
@@ -90,6 +90,8 @@ void InputJogo::atualizarMage()
 			}
 		}
 		
+	
+
 	}
 }
 
@@ -185,6 +187,8 @@ void InputJogo::atualizarThief()
 				}
 			}
 		}
+
+		
 
 	}
 }
@@ -370,3 +374,93 @@ void InputJogo::setFirstMap()
 {
 	mapa[mapaAtual].setFirst(true);
 }
+
+void InputJogo::setChests(int rx, int ry)
+{
+	mapa[mapaAtual].setTile(rx, ry, 8);
+}
+
+void InputJogo::setOpenChest(int rx, int ry)
+{
+	mapa[mapaAtual].setTile(rx, ry, 7);
+}
+
+bool InputJogo::isSolid(int x, int y)
+{
+	if (mapa[mapaAtual].getTile(x, y).getSolid())
+		return true;
+	else
+		return false;
+	
+}
+
+Sprite InputJogo::getPlayerSprite()
+{
+	if (getClass() == 1) {
+		return mage.getSprite();
+	}
+	else if (getClass() == 2) {
+		return warrior.getSprite();
+	}
+	else if (getClass() == 3) {
+		return thief.getSprite();
+	}
+}
+
+int InputJogo::getPlayerX()
+{
+	if (getClass() == 1) {
+		return mage.getX();
+	}
+	else if (getClass() == 2) {
+		return warrior.getX();
+	}
+	else if(getClass() == 3) {
+		return thief.getX();
+	}
+}
+
+int InputJogo::getPlayerY()
+{
+	if (getClass() == 1) {
+		return mage.getY();
+	}
+	else if (getClass() == 2) {
+		return warrior.getY();
+	}
+	else if (getClass() == 3) {
+		return thief.getY();
+	}
+}
+
+Sprite InputJogo::getSpriteBau()
+{
+	return mapa[mapaAtual].getBauSprite();
+}
+
+void InputJogo::desenhar()
+{
+	if (getClass() == 1) {
+		mage.desenhar();
+	}
+	else if (getClass() == 2) {
+		warrior.desenhar();
+	}
+	else if (getClass() == 3) {
+		thief.desenhar();
+	}
+}
+
+void InputJogo::atualizar()
+{
+	if (getClass() == 1) {
+		atualizarMage();
+	}
+	else if (getClass() == 2) {
+		atualizarWarrior();
+	}
+	else if (getClass() == 3) {
+		atualizarThief();
+	}
+}
+

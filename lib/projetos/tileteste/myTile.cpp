@@ -36,3 +36,4 @@ Sprite myTile::getSprite()
 	
 	return sprite;
 }
+

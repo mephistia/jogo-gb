@@ -15,6 +15,7 @@ public:
 	Sprite getSprite();
 
 
+
 private:
 	bool isSolid;
 	int id;

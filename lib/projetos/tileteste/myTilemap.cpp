@@ -93,3 +93,14 @@ void myTilemap::setFirst(bool f)
 {
 	first = f;
 }
+
+void myTilemap::setTile(int x, int y, int id)
+{
+	map[x][y] = id;
+}
+
+Sprite myTilemap::getBauSprite()
+{
+	// retorna sprite do bau fechado
+	return tiles[8].getSprite();
+}

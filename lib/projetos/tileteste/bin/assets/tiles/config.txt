@@ -1,0 +1,11 @@
+9
+
+0 preto C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/preto.jpg 
+1 chao C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/chao.jpg 
+2 muro C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/muro.jpg 
+3 porta_h C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/porta_h.jpg 
+4 porta_v C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/porta_v.jpg 
+5 obs1 C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/obs1.jpg 
+6 obs2 C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/obs2.jpg 
+7 bauaberto C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/bauaberto.jpg 
+8 baufechado C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/baufechado.jpg 

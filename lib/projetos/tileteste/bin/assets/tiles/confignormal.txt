@@ -1,0 +1,11 @@
+9
+
+0 preto assets/tiles/preto.jpg 
+1 chao assets/tiles/chao.jpg 
+2 muro assets/tiles/muro.jpg 
+3 porta_h assets/tiles/porta_h.jpg 
+4 porta_v assets/tiles/porta_v.jpg 
+5 obs1 assets/tiles/obs1.jpg 
+6 obs2 assets/tiles/obs2.jpg 
+7 bauaberto assets/tiles/bauaberto.jpg 
+8 baufechado assets/tiles/baufechado.jpg 

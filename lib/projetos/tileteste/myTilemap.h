@@ -21,6 +21,10 @@ public:
 	bool getFirst();
 	void setFirst(bool f);
 
+	void setTile(int x, int y, int id);
+
+	Sprite getBauSprite();
+
 private:
 	myTile * tiles;
 	int totalTiles, tileSize;

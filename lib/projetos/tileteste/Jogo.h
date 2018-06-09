@@ -35,10 +35,13 @@ public:
 	void tSelect();
 	void tInventario();
 	
+	void pos();
+
+	void colisoes();
 
 private:
 	InputJogo input;
-	int randMapa, idTelas;
+	int randMapa, idTelas, *rx, *ry, numBaus;
 	
 };
 

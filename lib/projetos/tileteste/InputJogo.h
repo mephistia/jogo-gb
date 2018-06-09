@@ -41,6 +41,20 @@ public:
 	void setPosPorta();
 	void setFirstMap();
 
+	void setChests(int rx, int ry);
+	void setOpenChest(int rx, int ry);
+
+
+	bool isSolid(int x, int y);
+
+	Sprite getPlayerSprite();
+	int getPlayerX();
+	int getPlayerY();
+
+	Sprite getSpriteBau();
+
+	void desenhar();
+	void atualizar();
 
 private:
 	myTilemap mapa[6];
