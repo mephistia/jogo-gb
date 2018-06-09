@@ -1,0 +1,4 @@
+3
+0 Rat 3 10 assets/sprites/mrat.png
+1 Bat 5 15 assets/sprites/mbat.png
+2 Ghost 6 22 assets/sprites/mghost.png

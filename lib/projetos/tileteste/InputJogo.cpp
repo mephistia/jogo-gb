@@ -198,6 +198,36 @@ void InputJogo::desenharThief()
 	thief.desenhar();
 }
 
+void InputJogo::lerMonstros(std::string arq)
+{
+	int nMonstros, id, def, hp;
+	std::string caminho, nome;
+	ifstream monstros(arq);
+
+	if (monstros) {
+		monstros >> nMonstros;
+		mon = new Monster[nMonstros];
+
+		for (int i = 0; i < nMonstros; i++) {
+			monstros >> id >> nome >> def >> hp >> caminho;
+			mon[i].mInicializar(id, nome, def, hp, caminho);
+		}
+	}
+}
+
+void InputJogo::iniciaMonstros()
+{
+	
+}
+
+void InputJogo::atualizarMonstros()
+{
+}
+
+void InputJogo::desenharMonstros()
+{
+}
+
 int InputJogo::getMapaAtual()
 {
 	return mapaAtual;

@@ -3,6 +3,7 @@
 #include "Warrior.h"
 #include "Thief.h"
 #include "myTilemap.h"
+#include "Monster.h"
 #include <fstream>
 
 class InputJogo
@@ -27,6 +28,11 @@ public:
 	void iniciaThief(std::string sheet);
 	void atualizarThief();
 	void desenharThief();
+
+	void lerMonstros(std::string arq);
+	void iniciaMonstros();
+	void atualizarMonstros();
+	void desenharMonstros();
 
 	int getMapaAtual();
 	void setMapaAtual(int mapa);
@@ -62,5 +68,6 @@ private:
 	Mage mage;
 	Warrior warrior;
 	Thief thief;
+	Monster *mon;
 };
 
