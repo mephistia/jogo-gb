@@ -160,10 +160,11 @@ void Jogo::pos()
 	for (int i = 0; i < numBaus; i++) {
 	
 		do {
-			rx[i] = uniRandEntre(0, 32);
-			ry[i] = uniRandEntre(0, 24);
-		} while (input.isSolid(rx[i], ry[i]));
+			rx[i] = uniRandEntre(0, 31);
+			ry[i] = uniRandEntre(0, 23);
+		} while (input.isSolid(rx[i], ry[i]) && input.isSolid(rx[i] + 1, ry[i] + 1) && input.isSolid(rx[i] + 2, ry[i] + 2));
 
+	
 		input.setChests(rx[i], ry[i]);
 	}
 }
@@ -172,9 +173,10 @@ void Jogo::colisoes()
 {
 	for (int i = 0; i < numBaus; i++) {
 
-		if (uniTestarColisaoSpriteComSprite(input.getPlayerSprite(), input.getPlayerX(), input.getPlayerY(), 0, input.getSpriteBau(), rx[i] * 32, ry[i] * 32, 0)) {
+		// se a posição do jogador for bau x+1 ou bau y+1
+		if (input.getPlayerY() == (ry[i]*32) +32 && input.getPlayerX() == rx[i]*32)
 			input.setOpenChest(rx[i], ry[i]);
-		}
+
 	}
 	
 }

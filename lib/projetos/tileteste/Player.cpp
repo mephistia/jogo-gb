@@ -40,25 +40,25 @@ void Player::setPos(float x, float y)
 void Player::movDir()
 {
 	x += vel;
-	sprite.setAnimacao(DIR);
+	setAnimDir();
 }
 
 void Player::movEsq()
 {
 	x -= vel;
-	sprite.setAnimacao(ESQ);
+	setAnimEsq();
 }
 
 void Player::movCima()
 {
 	y -= vel;
-	sprite.setAnimacao(CIMA);
+	setAnimCima();
 }
 
 void Player::movBaixo()
 {
 	y += vel;
-	sprite.setAnimacao(BAIXO);
+	setAnimBaixo();
 }
 
 bool Player::estaMovendo()

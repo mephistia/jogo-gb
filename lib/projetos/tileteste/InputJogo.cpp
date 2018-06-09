@@ -28,7 +28,7 @@ void InputJogo::carregarTiles(std::string arq)
 {
 	int totalTiles, id;
 	std::string nome, caminho;
-	bool solido;
+
 
 	ifstream tiles(arq);
 	if (tiles.is_open()) {

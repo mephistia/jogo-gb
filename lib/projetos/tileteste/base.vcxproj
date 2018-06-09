@@ -103,6 +103,7 @@
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Mage.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="myTile.cpp" />
     <ClCompile Include="myTilemap.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="InputJogo.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Mage.h" />
+    <ClInclude Include="Monster.h" />
     <ClInclude Include="myTile.h" />
     <ClInclude Include="myTilemap.h" />
     <ClInclude Include="Player.h" />
