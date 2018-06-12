@@ -70,6 +70,10 @@ private:
 	Mage mage;
 	Warrior warrior;
 	Thief thief;
-	Monster *monType;
+
+	// array dos monstros
+	int *m_id, *m_def, *m_hp;
+	std::string *m_nome;
+	std::string *m_sheet;
 };
 

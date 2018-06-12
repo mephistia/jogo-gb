@@ -18,8 +18,9 @@ myTilemap::~myTilemap()
 void myTilemap::ler(std::string arquivo)
 {
 	int id, idmapa;
-	bool solido;
-	std::string nome, caminho;
+	int solido;
+	std::string nome;
+	std::string caminho;
 
 
 	ifstream tilemap(arquivo);
@@ -128,7 +129,7 @@ int myTilemap::getNMonsters()
 	return numMonsters;
 }
 
-Monster myTilemap::getMonster(int posArray)
+Monster myTilemap::getMonster(int *posArray)
 {
-	return m[posArray];
+	return m[*posArray];
 }

@@ -19,7 +19,7 @@ protected:
 	bool isDead, moving;
 
 	Sprite sprite;
-	std::string caminho;
+	
 
 	float x, y;
 	float vel;

@@ -207,12 +207,20 @@ void InputJogo::lerMonstros(std::string arq)
 	if (monstros) {
 		monstros >> nMonstros;
 
-		// objetos para pegar os tipos
-		monType = new Monster[nMonstros];
+		m_id = new int[nMonstros];
+		m_def = new int[nMonstros];
+		m_hp = new int[nMonstros];
+		m_sheet = new std::string[nMonstros];
+		m_nome = new std::string[nMonstros];
+		
 
 		for (int i = 0; i < nMonstros; i++) {
 			monstros >> id >> nome >> def >> hp >> caminho;
-			monType[i].mInicializar(id, nome, def, hp, caminho);
+			m_id[i] = id;
+			m_nome[i] = nome;
+			m_def[i] = def;
+			m_hp[i] = hp;
+			m_sheet[i] = caminho;
 		}
 	}
 }
@@ -229,19 +237,19 @@ void InputJogo::iniciaMonstros(int n)
 			int random = uniRandEntre(0, nMonstros - 1);
 
 			// inicializar o monstro do mapa com os mesmos dados do tipo random
-			mapa[mapaAtual].getMonster(i).mInicializar(monType[random].getId(), monType[random].getNome(), monType[random].getDef(), monType[random].getHP(), monType[random].getCaminho());
+			mapa[mapaAtual].getMonster(&i).mInicializar(m_id[random], m_nome[random], m_def[random], m_hp[random], m_sheet[random]);
 
 			// setar uma posição para o monstro (em tiles)
 			int rx, ry;
 			do {
 				rx = uniRandEntre(0, 29);
 				ry = uniRandEntre(0, 21);
-			} while (isSolid(rx + 2, ry + 2) || isSolid(rx + 1, ry + 1) ||
-				mapa[mapaAtual].getTile(rx + 2, ry + 2).isMonster() || mapa[mapaAtual].getTile(rx + 1, ry + 1).isMonster() ||
+			} while (isSolid(rx + 2, ry + 2) && isSolid(rx + 1, ry + 1) &&
+				mapa[mapaAtual].getTile(rx + 2, ry + 2).isMonster() && mapa[mapaAtual].getTile(rx + 1, ry + 1).isMonster() ||
 				mapa[mapaAtual].getTile(rx, ry).isMonster() || isSolid(rx, ry));
 
 
-			mapa[mapaAtual].getMonster(i).setPos(rx, ry);
+			mapa[mapaAtual].getMonster(&i).setPos(rx, ry);
 			mapa[mapaAtual].getTile(rx, ry).setMonster(true);
 		
 		
@@ -254,7 +262,7 @@ void InputJogo::iniciaMonstros(int n)
 void InputJogo::atualizarMonstros()
 {
 	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
-		mapa[mapaAtual].getMonster(i).setAnimBaixo();
+		mapa[mapaAtual].getMonster(&i).setAnimBaixo();
 
 	}
 }
@@ -262,9 +270,8 @@ void InputJogo::atualizarMonstros()
 void InputJogo::desenharMonstros()
 {
 	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
-
-
-		mapa[mapaAtual].getMonster(i).desenhar();
+		
+		mapa[mapaAtual].getMonster(&i).desenhar();
 	}
 }
 

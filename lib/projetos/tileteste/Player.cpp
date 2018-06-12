@@ -14,7 +14,6 @@ Player::~Player()
 void Player::inicializar(std::string sheet)
 {
 	sprite.setSpriteSheet(sheet);
-	caminho = sheet;
 
 	ancoraX = 0.5;
 	ancoraY = 0.8;

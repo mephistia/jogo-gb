@@ -16,24 +16,24 @@ void Jogo::inicializar()
 
 
 	//ler tiles
-	input.carregarTiles("C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/config.txt");
+	input.carregarTiles("bin/assets/tiles/configfix.txt");
 
 	// ler mapas
-	input.lerMapa(0,"C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/mapa0.txt");
-	input.lerMapa(1, "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/tiles/mapa1.txt");
+	input.lerMapa(0,"bin/assets/tiles/mapa0.txt");
+	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
 
 	// ler sprites de personagem
-	gRecursos.carregarSpriteSheet("mage", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/mage.png", 4, 4);
-	gRecursos.carregarSpriteSheet("warrior", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/warrior.png", 4, 4);
-	gRecursos.carregarSpriteSheet("thief", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/thief.png", 4, 4);
+	gRecursos.carregarSpriteSheet("mage", "bin/assets/sprites/mage.png", 4, 4);
+	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 4);
+	gRecursos.carregarSpriteSheet("thief", "bin/assets/sprites/thief.png", 4, 4);
 
 	// ler sprites de monstros
-	gRecursos.carregarSpriteSheet("Rat", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/mrat.png", 4, 4);
-	gRecursos.carregarSpriteSheet("Bat", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/mbat.png", 4, 4);
-	gRecursos.carregarSpriteSheet("Ghost", "C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/ghost.png", 4, 4);
+	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);
+	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 4);
+	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/ghost.png", 4, 4);
 
 	// ler monstros
-	input.lerMonstros("C:/Users/ander/Documents/GitHub/jogo-gb/lib/projetos/tileteste/bin/assets/sprites/monsters.txt");
+	input.lerMonstros("bin/assets/sprites/monstersfix.txt");
 
 
 	// inicializar classes
@@ -166,7 +166,7 @@ void Jogo::tInventario()
 void Jogo::pos()
 {
 	// monstros no mapa
-	numMonstros = 3; /*uniRandEntre(0, 5);*/
+	numMonstros = 4; /*uniRandEntre(0, 5);*/
 	input.iniciaMonstros(numMonstros);
 
 	// baus

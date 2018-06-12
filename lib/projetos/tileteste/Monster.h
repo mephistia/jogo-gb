@@ -24,6 +24,7 @@ public:
 private:
 	int id;
 	std::string nome;
+	std::string caminho;
 	
 };
 

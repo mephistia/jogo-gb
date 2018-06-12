@@ -31,7 +31,7 @@ public:
 
 	void setNMonsters(int n);
 	int getNMonsters();
-	Monster getMonster(int posArray);
+	Monster getMonster(int *posArray);
 
 private:
 	myTile * tiles;
