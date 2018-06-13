@@ -12,7 +12,7 @@ myTile::~myTile()
 {
 }
 
-void myTile::createTile(int id, std::string nome, std::string caminho, int isSolid)
+void myTile::createTile(int &id, std::string& nome, std::string& caminho, int &isSolid)
 {
 	this->id = id;
 	this->nome = nome;
@@ -22,6 +22,7 @@ void myTile::createTile(int id, std::string nome, std::string caminho, int isSol
 	}
 	else
 		this->isSolid = true;
+
 	sprite.setSpriteSheet(nome);
 
 }

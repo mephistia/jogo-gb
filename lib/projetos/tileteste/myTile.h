@@ -8,7 +8,7 @@ public:
 	myTile();
 	~myTile();
 
-	void createTile(int id, std::string nome, std::string caminho, int isSolid);
+	void createTile(int &id, std::string &nome, std::string &caminho, int &isSolid);
 
 	bool getSolid();
 	int getId();

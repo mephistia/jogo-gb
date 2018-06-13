@@ -58,7 +58,7 @@ int myTilemap::getMapId()
 	return mapId;
 }
 
-int myTilemap::getPos(int x, int y)
+int myTilemap::getPos(int &x, int &y)
 {
 	return map[x][y];
 }
@@ -121,6 +121,7 @@ void myTilemap::setMonstersDone(bool d)
 void myTilemap::setNMonsters(int n)
 {
 	numMonsters = n;
+	
 	m = new Monster[n];
 }
 
@@ -129,7 +130,13 @@ int myTilemap::getNMonsters()
 	return numMonsters;
 }
 
-Monster myTilemap::getMonster(int *posArray)
+void myTilemap::inicializaMonstro(int i, int id, int def, int hp, std::string nome, std::string caminho)
 {
-	return m[*posArray];
+	m[i].mInicializar(id, nome, def, hp, caminho);
 }
+
+Monster& myTilemap::getMonster(int &i)
+{
+	return m[i];
+}
+

@@ -237,20 +237,19 @@ void InputJogo::iniciaMonstros(int n)
 			int random = uniRandEntre(0, nMonstros - 1);
 
 			// inicializar o monstro do mapa com os mesmos dados do tipo random
-			mapa[mapaAtual].getMonster(&i).mInicializar(m_id[random], m_nome[random], m_def[random], m_hp[random], m_sheet[random]);
+			mapa[mapaAtual].inicializaMonstro(i, m_id[random], m_def[random], m_hp[random], m_nome[random], m_sheet[random]);
 
 			// setar uma posição para o monstro (em tiles)
-			int rx, ry;
+			int *rx = new int; 
+			int *ry = new int;
 			do {
-				rx = uniRandEntre(0, 29);
-				ry = uniRandEntre(0, 21);
-			} while (isSolid(rx + 2, ry + 2) && isSolid(rx + 1, ry + 1) &&
-				mapa[mapaAtual].getTile(rx + 2, ry + 2).isMonster() && mapa[mapaAtual].getTile(rx + 1, ry + 1).isMonster() ||
-				mapa[mapaAtual].getTile(rx, ry).isMonster() || isSolid(rx, ry));
+				*rx = uniRandEntre(1, 29);
+				*ry = uniRandEntre(1, 21);
+			} while (isSolid(*rx, *ry) == true);
 
 
-			mapa[mapaAtual].getMonster(&i).setPos(rx, ry);
-			mapa[mapaAtual].getTile(rx, ry).setMonster(true);
+			mapa[mapaAtual].getMonster(i).setPos(*rx, *ry);
+			mapa[mapaAtual].getTile(*rx, *ry).setSolid(true);
 		
 		
 		}
@@ -262,7 +261,7 @@ void InputJogo::iniciaMonstros(int n)
 void InputJogo::atualizarMonstros()
 {
 	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
-		mapa[mapaAtual].getMonster(&i).setAnimBaixo();
+		mapa[mapaAtual].getMonster(i).setAnimBaixo();
 
 	}
 }
@@ -271,7 +270,7 @@ void InputJogo::desenharMonstros()
 {
 	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
 		
-		mapa[mapaAtual].getMonster(&i).desenhar();
+		mapa[mapaAtual].getMonster(i).desenhar();
 	}
 }
 
@@ -462,13 +461,10 @@ void InputJogo::setOpenChest(int rx, int ry)
 	mapa[mapaAtual].setTile(rx, ry, 7);
 }
 
-bool InputJogo::isSolid(int x, int y)
+bool InputJogo::isSolid(int &x, int &y)
 {
 	if (mapa[mapaAtual].getPos(x,y)!= NULL) {
-		if (mapa[mapaAtual].getTile(x, y).getSolid())
-			return true;
-		else
-			return false;
+		return mapa[mapaAtual].getTile(x, y).getSolid();
 	}
 
 	

@@ -177,11 +177,9 @@ void Jogo::pos()
 	for (int i = 0; i < numBaus; i++) {
 	
 		do {
-			rx[i] = uniRandEntre(0, 29);
-			ry[i] = uniRandEntre(0, 21);
-		} while (input.isSolid(rx[i] + 2, ry[i] + 2) || input.isSolid(rx[i] + 1, ry[i] + 1) ||
-			    input.getMap(randMapa).getTile(rx[i]+2,ry[i]+2).isMonster() || input.getMap(randMapa).getTile(rx[i] + 1, ry[i] + 1).isMonster() ||
-				input.getMap(randMapa).getTile(rx[i], ry[i]).isMonster() || input.isSolid(rx[i],ry[i]));
+			rx[i] = uniRandEntre(1, 29);
+			ry[i] = uniRandEntre(1, 21);
+		} while (input.isSolid(rx[i],ry[i]));
 
 	
 		input.setChests(rx[i], ry[i]);
@@ -195,7 +193,11 @@ void Jogo::colisoes()
 	for (int i = 0; i < numBaus; i++) {
 
 		// se a posição do jogador for bau x+1 ou bau y+1
-		if (input.getPlayerY() == (ry[i]*32) +32 && input.getPlayerX() == rx[i]*32)
+		if (input.getPlayerY() == (ry[i] * 32) + 32 && input.getPlayerX() == rx[i] * 32)
+			input.setOpenChest(rx[i], ry[i]);
+		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) + 32)
+			input.setOpenChest(rx[i], ry[i]);
+		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) - 32)
 			input.setOpenChest(rx[i], ry[i]);
 
 	}

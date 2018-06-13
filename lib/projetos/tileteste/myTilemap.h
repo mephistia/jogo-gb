@@ -12,7 +12,7 @@ public:
 
 	void ler(std::string arquivo);
 	int getMapId();
-	int getPos(int x, int y);
+	int getPos(int &x, int &y);
 	myTile getTile(int x, int y);
 	void desenhar();
 
@@ -31,7 +31,8 @@ public:
 
 	void setNMonsters(int n);
 	int getNMonsters();
-	Monster getMonster(int *posArray);
+	void inicializaMonstro(int i, int id, int def, int hp, std::string nome, std::string caminho);
+	Monster& getMonster(int &i);
 
 private:
 	myTile * tiles;

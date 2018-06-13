@@ -52,7 +52,7 @@ public:
 	void setOpenChest(int rx, int ry);
 
 
-	bool isSolid(int x, int y);
+	bool isSolid(int &x, int &y);
 
 	Sprite getPlayerSprite();
 	int getPlayerX();
