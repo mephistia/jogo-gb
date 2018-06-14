@@ -1,14 +1,16 @@
 9
 32
-0 preto assets/tiles/preto.jpg 1
-1 chao assets/tiles/chao.jpg 0
-2 muro assets/tiles/muro.jpg 1
-3 porta_h assets/tiles/porta_h.jpg 0
-4 porta_v assets/tiles/porta_v.jpg 0
-5 obs1 assets/tiles/obs1.jpg 1
-6 obs2 assets/tiles/obs2.jpg 1
-7 bauaberto assets/tiles/bauaberto.jpg 1
-8 baufechado assets/tiles/baufechado.jpg 1
+
+0 preto bin/assets/tiles/preto.jpg 1
+1 chao bin/assets/tiles/chao.jpg 0
+2 muro bin/assets/tiles/muro.jpg 1
+3 porta_h bin/assets/tiles/porta_h.jpg 0
+4 porta_v bin/assets/tiles/porta_v.jpg 0
+5 obs1 bin/assets/tiles/obs1.jpg 1
+6 obs2 bin/assets/tiles/obs2.jpg 1
+7 bauaberto bin/assets/tiles/bauaberto.jpg 1
+8 baufechado bin/assets/tiles/baufechado.jpg 1
+
 
 0
 
@@ -36,3 +38,4 @@
 0	2	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	2	0
 0	2	2	2	2	2	2	2	2	2	2	2	2	2	2	4	2	2	2	2	2	2	2	2	2	2	2	2	2	2	2	0
 0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+

@@ -13,6 +13,7 @@ void Jogo::inicializar()
 	uniInicializar(1024, 768, false, "Generic Dungeon");
 
 	srand(time(0));
+	uniRandSetSemente(time(NULL));
 
 
 	//ler tiles
@@ -26,11 +27,33 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("mage", "bin/assets/sprites/mage.png", 4, 4);
 	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 4);
 	gRecursos.carregarSpriteSheet("thief", "bin/assets/sprites/thief.png", 4, 4);
+	
 
 	// ler sprites de monstros
 	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);
 	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 4);
 	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/ghost.png", 4, 4);
+
+	// ler telas
+	gRecursos.carregarSpriteSheet("overlay", "bin/assets/sprites/overlay.png", 1, 1);
+	hud.setSpriteSheet("overlay");
+
+	// textos diferentes no jogo: 10 de cada item, 1 classe, 4 status
+	txt = new gTexto[15];
+
+	// ler fonte
+	gRecursos.carregarFonte("font", "bin/assets/fonts/medieval.ttf", 45);
+	//gRecursos.carregarFonte("stat", "bin/assets/fonts/medieval2.tff", 36);
+	//gRecursos.carregarFonte("itens", "bin/assets/fonts/medieval3.tff", 20);
+	
+	// texto 0 = classe, 1 a 4 = status, 5 a 14 = itens
+
+	for (int i = 0; i < 15; i++) {      // 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
+		txt[i].setFont("font");
+		txt[i].centralizar();
+		txt[i].cor(98, 80, 47);
+	}
+
 
 	// ler monstros
 	input.lerMonstros("bin/assets/sprites/monstersfix.txt");
@@ -46,6 +69,12 @@ void Jogo::inicializar()
 	// selecionar rand teste
 	int r = uniRandEntre(1, 3);
 	input.selectClass(r);
+
+	// setar as fontes ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
+	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
+	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
+	txt[3].setTxt(std::to_string(input.getPlayerDef()));
+	txt[4].setTxt(std::to_string(input.getPlayerGold()));
 
 	// mapa aleatorio
 	randMapa = uniRandEntre(0, 1);
@@ -65,6 +94,17 @@ void Jogo::inicializar()
 
 	// setar as posições de monstros e baus
 	pos();
+
+	// setar texto da classe
+	if (input.getClass() == 1) {
+		txt[0].setTxt("Mago");
+	}
+	else if (input.getClass() == 2) {
+		txt[0].setTxt("Guerreiro");
+	}
+	else if (input.getClass() == 3) {
+		txt[0].setTxt("Ladino");
+	}
 
 	idTelas = telaJogo;
 }
@@ -132,7 +172,8 @@ void Jogo::tCarregar()
 
 void Jogo::tJogo()
 {
-	
+	bool bag = false;
+
 	// desenhar primeiro mapa aleatoriamente
 	input.getMap(randMapa).desenhar();
 
@@ -143,15 +184,20 @@ void Jogo::tJogo()
 	// testar as colisões
 	colisoes();
 
-
-	// atualizar 
 	input.atualizar();
-
-
-	// desenhar 
 	input.desenhar();
-
+	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
 	
+	txt[0].desenhar(925, 170);
+	
+	int tX, tY;
+	tX = 930;
+	tY = 220;
+	txt[1].desenhar(tX, tY);
+	txt[2].desenhar(tX, tY += 72);
+	txt[3].desenhar(tX, tY += 72);
+	txt[4].desenhar(tX, tY += 72);
+
 
 }
 
@@ -161,6 +207,12 @@ void Jogo::tSelect()
 
 void Jogo::tInventario()
 {
+	/*inventory.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+	txt[0].desenhar(gJanela.getLargura() / 2, 500);
+
+	if (gTeclado.pressionou[TECLA_I]) {
+		idTelas = telaJogo;
+	}*/
 }
 
 void Jogo::pos()

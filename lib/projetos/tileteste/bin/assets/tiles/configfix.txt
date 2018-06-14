@@ -9,3 +9,4 @@
 6 obs2 bin/assets/tiles/obs2.jpg 
 7 bauaberto bin/assets/tiles/bauaberto.jpg 
 8 baufechado bin/assets/tiles/baufechado.jpg 
+

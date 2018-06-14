@@ -63,6 +63,12 @@ public:
 	void desenhar();
 	void atualizar();
 
+	int getPlayerHP();
+	int getPlayerMaxHP();
+	int getPlayerDef();
+	int getPlayerAtk();
+	int getPlayerGold();
+
 
 private:
 	myTilemap mapa[6];

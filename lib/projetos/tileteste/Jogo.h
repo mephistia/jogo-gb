@@ -1,6 +1,7 @@
 #pragma once
 #include "libUnicornio.h"
 #include "InputJogo.h"
+#include "gTexto.h"
 
 enum idTelas {
 
@@ -41,7 +42,10 @@ public:
 
 private:
 	InputJogo input;
+	gTexto *txt;
 	int randMapa, idTelas, *rx, *ry, numBaus, numMonstros;
 	
+	// sprites de telas
+	Sprite hud;
 };
 

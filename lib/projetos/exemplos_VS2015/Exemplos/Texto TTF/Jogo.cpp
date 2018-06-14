@@ -27,6 +27,7 @@ void Jogo::inicializar()
 	texto.setEspacamentoLinhas(1.5f);			//	Espaçamento entre as linhas. O padrão é 1.0f.
 	texto.setLarguraMaxima(300);				//	Largura máxima do texto. Se ultrapassada o texto quebra para outra linha
 												//	se igual a 0, a largura é infinita.
+	
 
 	texto.setCorPalavra("libUnicórnio", 2, 163, 233);	//	Setar a cor de uma palavra (ou trecho da string)
 	texto.setCorPalavra("coloridos", 237, 28, 36);		//	Setar a cor de uma palavra (ou trecho da string)
