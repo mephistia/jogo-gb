@@ -43,8 +43,7 @@ void Jogo::inicializar()
 
 	// ler fonte
 	gRecursos.carregarFonte("font", "bin/assets/fonts/medieval.ttf", 45);
-	//gRecursos.carregarFonte("stat", "bin/assets/fonts/medieval2.tff", 36);
-	//gRecursos.carregarFonte("itens", "bin/assets/fonts/medieval3.tff", 20);
+
 	
 	// texto 0 = classe, 1 a 4 = status, 5 a 14 = itens
 
@@ -70,11 +69,7 @@ void Jogo::inicializar()
 	int r = uniRandEntre(1, 3);
 	input.selectClass(r);
 
-	// setar as fontes ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
-	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
-	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
-	txt[3].setTxt(std::to_string(input.getPlayerDef()));
-	txt[4].setTxt(std::to_string(input.getPlayerGold()));
+	
 
 	// mapa aleatorio
 	randMapa = uniRandEntre(0, 1);
@@ -186,6 +181,12 @@ void Jogo::tJogo()
 
 	input.atualizar();
 	input.desenhar();
+	// atualizar textos ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
+	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
+	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
+	txt[3].setTxt(std::to_string(input.getPlayerDef()));
+	txt[4].setTxt(std::to_string(input.getPlayerGold()));
+
 	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
 	
 	txt[0].desenhar(925, 170);
@@ -207,18 +208,13 @@ void Jogo::tSelect()
 
 void Jogo::tInventario()
 {
-	/*inventory.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
-	txt[0].desenhar(gJanela.getLargura() / 2, 500);
-
-	if (gTeclado.pressionou[TECLA_I]) {
-		idTelas = telaJogo;
-	}*/
+	
 }
 
 void Jogo::pos()
 {
 	// monstros no mapa
-	numMonstros = 4; /*uniRandEntre(0, 5);*/
+	numMonstros = uniRandEntre(0, 5);
 	input.iniciaMonstros(numMonstros);
 
 	// baus
@@ -244,13 +240,37 @@ void Jogo::colisoes()
 {
 	for (int i = 0; i < numBaus; i++) {
 
-		// se a posição do jogador for bau x+1 ou bau y+1
-		if (input.getPlayerY() == (ry[i] * 32) + 32 && input.getPlayerX() == rx[i] * 32)
+		// se a posição do jogador for bau x+1/x+2 ou bau y+1
+		if (input.getPlayerY() == (ry[i] * 32) + 32 && input.getPlayerX() == rx[i] * 32) {
+			if (input.getMap(randMapa).getTile(rx[i], ry[i]).getId() == 8) {
+				int rr = uniRandEntre(1, 6);
+				rr *= 1000;
+
+				input.setPlayerGold(rr);
+			}
 			input.setOpenChest(rx[i], ry[i]);
-		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) + 32)
+
+		}
+		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) + 32) {
+			if (input.getMap(randMapa).getTile(rx[i], ry[i]).getId() == 8) {
+				int rr = uniRandEntre(1, 6);
+				rr *= 1000;
+
+				input.setPlayerGold(rr);
+			}
 			input.setOpenChest(rx[i], ry[i]);
-		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) - 32)
+
+		}
+		else if (input.getPlayerY() == ry[i] * 32 && input.getPlayerX() == (rx[i] * 32) - 32) {
+			if (input.getMap(randMapa).getTile(rx[i], ry[i]).getId() == 8) {
+				int rr = uniRandEntre(1, 6);
+				rr *= 1000;
+
+				input.setPlayerGold(rr);
+			}
 			input.setOpenChest(rx[i], ry[i]);
+
+		}
 
 	}
 	

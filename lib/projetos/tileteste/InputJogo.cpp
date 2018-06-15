@@ -608,3 +608,16 @@ int InputJogo::getPlayerGold()
 	}
 }
 
+void InputJogo::setPlayerGold(int gold)
+{
+	if (getClass() == 1) {
+		 mage.setMoreGold(gold);
+	}
+	else if (getClass() == 2) {
+		 warrior.setMoreGold(gold);
+	}
+	else if (getClass() == 3) {
+		 thief.setMoreGold(gold);
+	}
+}
+
