@@ -1,0 +1,7 @@
+6
+armadura bin/assets/sprites/armadura.png 0 0 5 0
+colar bin/assets/sprites/colar.png 3 5 0 1
+elmo bin/assets/sprites/elmo.png 0 0 3 0
+livro bin/assets/sprites/livro.png 0 2 0 1
+luva bin/assets/sprites/luva.png 0 0 2 2
+pao bin/assets/sprites/pao.png 3 0 0 0

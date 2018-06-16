@@ -49,6 +49,8 @@ void InputJogo::carregarTiles(std::string arq)
 	}
 }
 
+
+
 void InputJogo::iniciaMage(std::string sheet)
 {
 	mage.inicializar(sheet);
@@ -196,6 +198,36 @@ void InputJogo::atualizarThief()
 void InputJogo::desenharThief()
 {
 	thief.desenhar();
+}
+
+void InputJogo::lerItens(std::string arq)
+{
+	std::string nome;
+	std::string caminho;
+	int bAtk, bDano, bDef, bHp, bMaxHp;
+
+	ifstream itens(arq);
+
+	if (itens) {
+		itens >> totalItens;
+
+		i_atk = new int[totalItens];
+		i_caminho = new std::string[totalItens];
+		i_def = new int[totalItens];
+		i_hp = new int[totalItens];
+		i_maxhp = new int[totalItens];
+		i_nome = new std::string[totalItens];
+
+		for (int i = 0; i < totalItens; i++) {
+			itens >> nome >> caminho >> bHp >> bMaxHp >> bDef >> bAtk;
+			i_nome[i] = nome;
+			i_caminho[i] = caminho;
+			i_hp[i] = bHp;
+			i_maxhp[i] = bMaxHp;
+			i_def[i] = bDef;
+			i_atk[i] = bAtk;
+		}
+	}
 }
 
 void InputJogo::lerMonstros(std::string arq)

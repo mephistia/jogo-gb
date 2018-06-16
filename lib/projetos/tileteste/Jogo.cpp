@@ -28,6 +28,17 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 4);
 	gRecursos.carregarSpriteSheet("thief", "bin/assets/sprites/thief.png", 4, 4);
 	
+	// ler sprites de itens
+	gRecursos.carregarSpriteSheet("armadura", "bin/assets/sprites/armadura.png", 1, 1);
+	gRecursos.carregarSpriteSheet("colar", "bin/assets/sprites/colar.png", 1, 1);
+	gRecursos.carregarSpriteSheet("elmo", "bin/assets/sprites/elmo.png", 1, 1);
+	gRecursos.carregarSpriteSheet("livro", "bin/assets/sprites/livro.png", 1, 1);
+	gRecursos.carregarSpriteSheet("luva", "bin/assets/sprites/luva.png", 1, 1);
+	gRecursos.carregarSpriteSheet("pao", "bin/assets/sprites/pao.png", 1, 1);
+
+
+
+
 
 	// ler sprites de monstros
 	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);

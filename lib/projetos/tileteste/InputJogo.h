@@ -19,6 +19,7 @@ public:
 	myTilemap getMap(int i);
 	void lerMapa(int i, std::string arq);
 	void carregarTiles(std::string arq);
+	
 
 
 	void iniciaMage(std::string sheet);
@@ -32,6 +33,8 @@ public:
 	void iniciaThief(std::string sheet);
 	void atualizarThief();
 	void desenharThief();
+
+	void lerItens(std::string arq);
 
 	void lerMonstros(std::string arq);
 	void iniciaMonstros(int n);
@@ -88,8 +91,9 @@ private:
 	std::string *m_sheet;
 
 	// array dos itens
-	int *i_id, i_def, i_hp, i_maxp, i_atk;
+	int *i_def, *i_hp, *i_maxhp, *i_atk;
 	std::string *i_nome;
 	std::string *i_caminho;
+	int totalItens;
 };
 
