@@ -5,6 +5,7 @@
 InputJogo::InputJogo()
 {
 	mapaAtual = 0;
+	playerItens = 0;
 }
 
 
@@ -209,6 +210,7 @@ void InputJogo::lerItens(std::string arq)
 	ifstream itens(arq);
 
 	if (itens) {
+
 		itens >> totalItens;
 
 		i_atk = new int[totalItens];
@@ -560,6 +562,17 @@ void InputJogo::desenhar()
 	}
 }
 
+void InputJogo::desenharItens()
+{
+
+	for (int i = 0; i < 10; i++) {
+
+		if (&bag[i] != NULL) {
+			bag[i].desenhar();
+		}
+	}
+}
+
 void InputJogo::atualizar()
 {
 	atualizarMonstros();
@@ -573,6 +586,11 @@ void InputJogo::atualizar()
 	else if (getClass() == 3) {
 		atualizarThief();
 	}
+}
+
+void InputJogo::atualizarBag()
+{
+	
 }
 
 int InputJogo::getPlayerHP()
@@ -650,6 +668,18 @@ void InputJogo::setPlayerGold(int gold)
 	}
 	else if (getClass() == 3) {
 		 thief.setMoreGold(gold);
+	}
+}
+
+void InputJogo::addItem(int tipo)
+{
+	int r = tipo;
+
+	if (playerItens < 10) {
+		bag[playerItens].create(playerItens, i_nome[r], i_caminho[r], i_hp[r], i_maxhp[r], i_def[r], i_atk[r]); 
+		lista.add_final(bag[playerItens]);
+		
+		// desenhar junto com o resto se não for null
 	}
 }
 

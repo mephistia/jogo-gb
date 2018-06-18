@@ -22,6 +22,8 @@ public:
 	// destrutor
 	Lista<T>::~Lista() {
 	}
+
+
 	// limpar a lista
 	void Lista<T>::clear() {
 		primeiro = NULL;

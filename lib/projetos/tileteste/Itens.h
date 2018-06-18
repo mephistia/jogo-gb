@@ -16,6 +16,11 @@ public:
 	int getX();
 	int getY();
 
+	void desenhar();
+
+	//sobrecarregar
+	friend bool operator<(const Itens &a, const Itens &b);
+
 protected:
 	int bonusHP, bonusMaxHP, bonusDef, bonusAtk, id; // id do item, não do tipo de item
 	std::string nome;

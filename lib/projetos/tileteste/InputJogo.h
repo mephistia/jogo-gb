@@ -67,7 +67,9 @@ public:
 	Sprite getSpriteBau();
 
 	void desenhar();
+	void desenharItens();
 	void atualizar();
+	void atualizarBag();
 
 	int getPlayerHP();
 	int getPlayerMaxHP();
@@ -76,6 +78,8 @@ public:
 	int getPlayerGold();
 
 	void setPlayerGold(int gold);
+
+	void addItem(int tipo);
 
 
 private:
@@ -95,5 +99,11 @@ private:
 	std::string *i_nome;
 	std::string *i_caminho;
 	int totalItens;
+	Itens bag[10];
+
+	// itens que o jogador pegou
+	int playerItens;
+
+	Lista<Itens>lista;
 };
 

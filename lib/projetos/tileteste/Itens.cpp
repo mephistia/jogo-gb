@@ -6,8 +6,8 @@ Itens::Itens()
 {
 	inBag = false;
 	used = false;
-	primeirox = 200;
-	y = 650;
+	primeirox = 300;
+	y = 730;
 }
 
 
@@ -34,6 +34,8 @@ void Itens::create(int id, std::string nome, std::string caminho, int bonusHP, i
 	this->caminho = caminho;
 
 	x = primeirox + (id * 42);
+
+	addBag();
 }
 
 bool Itens::isInBag()
@@ -67,4 +69,12 @@ int Itens::getY()
 	return y;
 }
 
+void Itens::desenhar()
+{
+	sprite.desenhar(x, y);
+}
 
+bool operator<(const Itens & a, const Itens & b)
+{
+	return a.id < b.id;
+}

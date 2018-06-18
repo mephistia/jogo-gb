@@ -23,6 +23,9 @@ void Jogo::inicializar()
 	input.lerMapa(0,"bin/assets/tiles/mapa0.txt");
 	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
 
+	// ler itens txt
+	input.lerItens("bin/assets/sprites/itens.txt");
+
 	// ler sprites de personagem
 	gRecursos.carregarSpriteSheet("mage", "bin/assets/sprites/mage.png", 4, 4);
 	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 4);
@@ -49,16 +52,17 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("overlay", "bin/assets/sprites/overlay.png", 1, 1);
 	hud.setSpriteSheet("overlay");
 
-	// textos diferentes no jogo: 10 de cada item, 1 classe, 4 status
-	txt = new gTexto[15];
+	// textos diferentes no jogo: 1 classe, 4 status
+	int numtxt = 5;
+	txt = new gTexto[numtxt];
 
 	// ler fonte
 	gRecursos.carregarFonte("font", "bin/assets/fonts/medieval.ttf", 45);
 
 	
-	// texto 0 = classe, 1 a 4 = status, 5 a 14 = itens
+	// texto 0 = classe, 1 a 4 = status
 
-	for (int i = 0; i < 15; i++) {      // 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
+	for (int i = 0; i < numtxt; i++) {      
 		txt[i].setFont("font");
 		txt[i].centralizar();
 		txt[i].cor(98, 80, 47);
@@ -201,6 +205,7 @@ void Jogo::tJogo()
 	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
 	
 	txt[0].desenhar(925, 170);
+	input.desenharItens();
 	
 	int tX, tY;
 	tX = 930;
@@ -258,6 +263,9 @@ void Jogo::colisoes()
 				rr *= 1000;
 
 				input.setPlayerGold(rr);
+
+				// item teste
+				input.addItem(1);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
@@ -268,6 +276,8 @@ void Jogo::colisoes()
 				rr *= 1000;
 
 				input.setPlayerGold(rr);
+				// item teste
+				input.addItem(1);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
@@ -278,6 +288,8 @@ void Jogo::colisoes()
 				rr *= 1000;
 
 				input.setPlayerGold(rr);
+				// item teste
+				input.addItem(1);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
