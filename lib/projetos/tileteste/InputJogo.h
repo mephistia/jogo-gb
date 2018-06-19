@@ -79,6 +79,8 @@ public:
 	int getPlayerGold();
 
 	void setPlayerGold(int gold);
+	void setPlayerHP(int hp);
+	
 
 	// inventario
 	void addItem(int tipo);

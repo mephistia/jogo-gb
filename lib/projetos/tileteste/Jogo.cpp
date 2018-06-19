@@ -46,11 +46,13 @@ void Jogo::inicializar()
 	// ler sprites de monstros
 	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);
 	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 4);
-	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/ghost.png", 4, 4);
+	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/mghost.png", 4, 4);
 
 	// ler telas
 	gRecursos.carregarSpriteSheet("overlay", "bin/assets/sprites/overlay.png", 1, 1);
 	hud.setSpriteSheet("overlay");
+
+
 
 	// textos diferentes no jogo: 1 classe, 4 status
 	int numtxt = 5;
@@ -231,7 +233,7 @@ void Jogo::tInventario()
 void Jogo::pos()
 {
 	// monstros no mapa
-	numMonstros = uniRandEntre(0, 5);
+	numMonstros = 3; /*uniRandEntre(0, 5);*/
 	input.iniciaMonstros(numMonstros);
 
 	// baus
@@ -244,7 +246,7 @@ void Jogo::pos()
 		do {
 			rx[i] = uniRandEntre(1, 29);
 			ry[i] = uniRandEntre(1, 21);
-		} while (input.isSolid(rx[i],ry[i]));
+		} while (input.getMap(randMapa).getTile(rx[i],ry[i]).getId() != 1);
 
 	
 		input.setChests(rx[i], ry[i]);

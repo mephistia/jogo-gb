@@ -46,6 +46,6 @@ private:
 	int randMapa, idTelas, *rx, *ry, numBaus, numMonstros;
 	
 	// sprites de telas
-	Sprite hud;
+	Sprite hud, selecao;
 };
 

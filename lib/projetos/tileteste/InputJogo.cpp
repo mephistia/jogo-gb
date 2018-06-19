@@ -67,28 +67,28 @@ void InputJogo::atualizarMage()
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32) + 1, (mage.getY()/32)).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).isMonster()) {
+				if (mapa[mapaAtual].getTile((mage.getX()/32) + 1, (mage.getY()/32)).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).isMonster()) {
 					mage.movDir();
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).isMonster()) {
+				if (mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).isMonster()) {
 					mage.movEsq();
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).isMonster()) {
+				if (mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).isMonster()) {
 					mage.movCima();
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) + 1).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).isMonster()) {
+				if (mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) + 1).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).isMonster()) {
 					mage.movBaixo();
 				}
 			}
@@ -117,28 +117,28 @@ void InputJogo::atualizarWarrior()
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).isMonster()) {
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).isMonster()) {
 					warrior.movDir();
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).isMonster()) {
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).isMonster()) {
 					warrior.movEsq();
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).isMonster()) {
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).isMonster()) {
 					warrior.movCima();
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).isMonster()) {
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).isMonster()) {
 					warrior.movBaixo();
 				}
 			}
@@ -269,7 +269,7 @@ void InputJogo::iniciaMonstros(int n)
 		for (int i = 0; i < n; i++) {
 
 			// sortear um tipo
-			int random = uniRandEntre(0, nMonstros - 1);
+			int random =  uniRandEntre(0, nMonstros-1);
 
 			// inicializar o monstro do mapa com os mesmos dados do tipo random
 			mapa[mapaAtual].inicializaMonstro(i, m_id[random], m_def[random], m_hp[random], m_nome[random], m_sheet[random]);
@@ -279,7 +279,7 @@ void InputJogo::iniciaMonstros(int n)
 			do {
 				rx = uniRandEntre(1, 29);
 				ry = uniRandEntre(1, 21);
-			} while (isSolid(rx,ry));
+			} while (mapa[mapaAtual].getTile(rx,ry).getId() != 1);
 
 			mapa[mapaAtual].getTile(rx, ry).setMonster();
 			mapa[mapaAtual].getMonster(i).setPos(rx, ry);
@@ -617,6 +617,8 @@ void InputJogo::addBonusItem(int bonusHP, int bonusMaxHP, int bonusDef, int bonu
 void InputJogo::atualizar()
 {
 	atualizarMonstros();
+
+	atualizarBatalha();
 
 	if (getClass() == 1) {
 		atualizarMage();
