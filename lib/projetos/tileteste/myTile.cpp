@@ -5,6 +5,7 @@
 myTile::myTile()
 {
 	monster = false;
+	
 }
 
 
@@ -17,19 +18,32 @@ void myTile::createTile(int &id, std::string& nome, std::string& caminho, int &i
 	this->id = id;
 	this->nome = nome;
 	this->caminho = caminho;
-	if (isSolid == 0) {
-		this->isSolid = false;
+	if (isSolid == 1) {
+		this->isSolid = true;
 	}
 	else
-		this->isSolid = true;
+		this->isSolid = false;
 
 	sprite.setSpriteSheet(nome);
 
+	if (id == 3)
+		door = true;
+
+	else if (id == 4)
+		door = true;
+
+	else
+		door = false;
 }
 
-bool myTile::getSolid()
+bool &myTile::getSolid()
 {
 	return isSolid;
+}
+
+bool & myTile::getPorta()
+{
+	return door;
 }
 
 int myTile::getId()
@@ -45,15 +59,15 @@ Sprite myTile::getSprite()
 
 void myTile::setSolid(bool s)
 {
-	isSolid = s;
+	this->isSolid = s;
 }
 
-void myTile::setMonster(bool b)
+void myTile::setMonster()
 {
-	monster = b;
+	monster = true;
 }
 
-bool myTile::isMonster()
+bool &myTile::isMonster()
 {
 	return monster;
 }

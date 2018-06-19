@@ -261,6 +261,18 @@ public:
 		sort_asc(primeiro, n);
 	}
 
+	// selecionar item específico
+	void Lista<T>::selecionar(const T dado) {
+		buscar_r(dado, primeiro);
+		
+	}
+
+	// retornar dado
+	T Lista<T>::retornar() {
+
+		return pos->dado;
+	}
+
 
 
 private:

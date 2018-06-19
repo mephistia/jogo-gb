@@ -195,6 +195,7 @@ void Jogo::tJogo()
 	colisoes();
 
 	input.atualizar();
+	input.atualizarBag();
 	input.desenhar();
 	// atualizar textos ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
 	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
@@ -234,7 +235,7 @@ void Jogo::pos()
 	input.iniciaMonstros(numMonstros);
 
 	// baus
-	numBaus = uniRandEntre(0, 2);
+	numBaus = 2;       /*uniRandEntre(0, 2); */
 	rx = new int[numBaus];
 	ry = new int[numBaus];
 
@@ -254,6 +255,7 @@ void Jogo::pos()
 
 void Jogo::colisoes()
 {
+	int ra = uniRandEntre(0, input.getTotalItens() - 1);
 	for (int i = 0; i < numBaus; i++) {
 
 		// se a posição do jogador for bau x+1/x+2 ou bau y+1
@@ -265,7 +267,7 @@ void Jogo::colisoes()
 				input.setPlayerGold(rr);
 
 				// item teste
-				input.addItem(1);
+				input.addItem(ra);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
@@ -277,7 +279,7 @@ void Jogo::colisoes()
 
 				input.setPlayerGold(rr);
 				// item teste
-				input.addItem(1);
+				input.addItem(ra);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
@@ -289,7 +291,7 @@ void Jogo::colisoes()
 
 				input.setPlayerGold(rr);
 				// item teste
-				input.addItem(1);
+				input.addItem(ra);
 			}
 			input.setOpenChest(rx[i], ry[i]);
 
@@ -297,4 +299,7 @@ void Jogo::colisoes()
 
 	}
 	
+	// colisao monstro
+
 }
+

@@ -15,11 +15,21 @@ public:
 	void setPos(int x, int y);
 	int getX();
 	int getY();
+	int getId();
+	int gethp();
+	int getmaxhp();
+	int getdef();
+	int getatk();
+	std::string getNome();
+
+	void setId(int id);
 
 	void desenhar();
 
 	//sobrecarregar
 	friend bool operator<(const Itens &a, const Itens &b);
+	friend bool operator==(const Itens &a, const Itens &b);
+
 
 protected:
 	int bonusHP, bonusMaxHP, bonusDef, bonusAtk, id; // id do item, não do tipo de item

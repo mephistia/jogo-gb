@@ -6,6 +6,7 @@ InputJogo::InputJogo()
 {
 	mapaAtual = 0;
 	playerItens = 0;
+	bag = new Itens[10]; // inventario maximo
 }
 
 
@@ -66,28 +67,28 @@ void InputJogo::atualizarMage()
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32) + 1, (mage.getY()/32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((mage.getX()/32) + 1, (mage.getY()/32)).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).isMonster()) {
 					mage.movDir();
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).isMonster()) {
 					mage.movEsq();
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).isMonster()) {
 					mage.movCima();
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) + 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) + 1).getSolid() && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).isMonster()) {
 					mage.movBaixo();
 				}
 			}
@@ -116,28 +117,28 @@ void InputJogo::atualizarWarrior()
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).isMonster()) {
 					warrior.movDir();
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).isMonster()) {
 					warrior.movEsq();
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).isMonster()) {
 					warrior.movCima();
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getSolid() && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).isMonster()) {
 					warrior.movBaixo();
 				}
 			}
@@ -164,28 +165,28 @@ void InputJogo::atualizarThief()
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).isMonster()) {
 					thief.movDir();
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getSolid()) {
+				if (!mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).isMonster()) {
 					thief.movEsq();
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).isMonster()) {
 					thief.movCima();
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getSolid()) {
+				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).isMonster()) {
 					thief.movBaixo();
 				}
 			}
@@ -278,11 +279,11 @@ void InputJogo::iniciaMonstros(int n)
 			do {
 				rx = uniRandEntre(1, 29);
 				ry = uniRandEntre(1, 21);
-			} while (isSolid(rx, ry) == true);
+			} while (isSolid(rx,ry));
 
-
+			mapa[mapaAtual].getTile(rx, ry).setMonster();
 			mapa[mapaAtual].getMonster(i).setPos(rx, ry);
-			mapa[mapaAtual].getTile(rx, ry).setSolid(true);
+			
 		
 		
 		}
@@ -484,6 +485,11 @@ void InputJogo::setFirstMap()
 	mapa[mapaAtual].setFirst(true);
 }
 
+bool &InputJogo::isPorta(int x, int y)
+{
+	return mapa[mapaAtual].getTile(x, y).getPorta();
+}
+
 void InputJogo::setChests(int rx, int ry)
 {
 	mapa[mapaAtual].setTile(rx, ry, 8);
@@ -494,13 +500,20 @@ void InputJogo::setOpenChest(int rx, int ry)
 	mapa[mapaAtual].setTile(rx, ry, 7);
 }
 
-bool InputJogo::isSolid(int &x, int &y)
+bool InputJogo::isSolid(int x, int y)
 {
 	if (mapa[mapaAtual].getPos(x,y)!= NULL) {
 		return mapa[mapaAtual].getTile(x, y).getSolid();
 	}
 
 	
+}
+
+bool InputJogo::isMonster(int  x, int  y)
+{
+	if (mapa[mapaAtual].getPos(x, y) != NULL) {
+		return mapa[mapaAtual].getTile(x, y).isMonster();
+	}
 }
 
 Sprite InputJogo::getPlayerSprite()
@@ -573,6 +586,34 @@ void InputJogo::desenharItens()
 	}
 }
 
+int InputJogo::getTotalItens()
+{
+	return totalItens;
+}
+
+void InputJogo::addBonusItem(int bonusHP, int bonusMaxHP, int bonusDef, int bonusAtk)
+{
+	if (getClass() == 1) {
+		mage.setMoreHP(bonusHP);
+		mage.setMoreMaxHP(bonusMaxHP);
+		mage.setMoreDef(bonusDef);
+		mage.setMoreAtk(bonusAtk);
+	}
+	else if (getClass() == 2) {
+		warrior.setMoreHP(bonusHP);
+		warrior.setMoreMaxHP(bonusMaxHP);
+		warrior.setMoreDef(bonusDef);
+		warrior.setMoreAtk(bonusAtk);
+	}
+	else if (getClass() == 3) {
+		thief.setMoreHP(bonusHP);
+		thief.setMoreMaxHP(bonusMaxHP);
+		thief.setMoreMaxHP(bonusMaxHP);
+		thief.setMoreDef(bonusDef);
+		thief.setMoreAtk(bonusAtk);
+	}
+}
+
 void InputJogo::atualizar()
 {
 	atualizarMonstros();
@@ -590,6 +631,30 @@ void InputJogo::atualizar()
 
 void InputJogo::atualizarBag()
 {
+
+	// tecla 1 = 30
+	// tecla 0 = 39
+	
+	
+	
+	
+	int i = 0;
+
+	for (int tecla = 30; tecla < 40; tecla++) { // tecla 1 a 9
+		if (gTeclado.pressionou[tecla]) {
+			if (bag[i].isInBag()) {
+				if (bag[i].getNome() == "pao") {
+					if (getPlayerHP() == getPlayerMaxHP())
+						break;
+				}
+				addBonusItem(bag[i].gethp(), bag[i].getmaxhp(), bag[i].getdef(), bag[i].getatk());
+				deleteItem(i);
+				break;
+			}
+		}
+
+		i++; //incrementa i de fora
+	}
 	
 }
 
@@ -671,15 +736,250 @@ void InputJogo::setPlayerGold(int gold)
 	}
 }
 
+void InputJogo::setPlayerHP(int hp)
+{
+	if (getClass() == 1) {
+		mage.setMoreHP(hp);
+	}
+	else if (getClass() == 2) {
+		warrior.setMoreHP(hp);
+	}
+	else if (getClass() == 3) {
+		thief.setMoreHP(hp);
+	}
+}
+
 void InputJogo::addItem(int tipo)
 {
 	int r = tipo;
 
 	if (playerItens < 10) {
+
+		// array bag auxiliar na criação da lista
 		bag[playerItens].create(playerItens, i_nome[r], i_caminho[r], i_hp[r], i_maxhp[r], i_def[r], i_atk[r]); 
+		bag[playerItens].addBag();
+		// lista armazena os itens atuais no iventário
 		lista.add_final(bag[playerItens]);
 		
-		// desenhar junto com o resto se não for null
+		playerItens++;
 	}
+
 }
 
+// deletar ou usar
+void InputJogo::deleteItem(int id)
+{
+
+	lista.remover(bag[id]); // remove da lista
+	for (int i = id; i < playerItens; i++)
+	{
+		bag[i+1].setPos(bag[i+1].getX() - 42, bag[i+1].getY()); // reposiciona na tela
+
+		bag[i] = bag[i + 1]; // sobrescreve no array
+
+	}
+
+	playerItens--;
+
+
+}
+
+bool InputJogo::podePosicionar(int x, int y)
+{
+	// variáveis para até 2 posições em volta
+
+	int x2 = x + 2;
+	int x1 = x + 1;
+
+	int y2 = y + 2;
+	int y1 = y + 1;
+
+	int x22 = x - 2;
+	int x11 = x - 1;
+
+	int y22 = y - 2;
+	int y11 = y - 1;
+
+
+	// se é sólido, não posiciona
+
+	if (isSolid(x, y))
+		return false;
+
+	else if (isSolid(x1, y))
+		return false;
+
+	else if (isSolid(x2, y))
+		return false;
+
+	else if (isSolid(x11, y))
+		return false;
+
+	else if (isSolid(x22, y))
+		return false;
+
+	else if (isSolid(x, y1))
+		return false;
+
+	else if (isSolid(x, y2))
+		return false;
+
+	else if (isSolid(x, y11))
+		return false;
+
+	else if (isSolid(x, y22))
+		return false;
+
+	// não posiciona se for monstro
+
+	if (isMonster(x, y))
+		return false;
+
+	else if (isMonster(x1, y))
+		return false;
+
+	else if (isMonster(x2, y))
+		return false;
+
+	else if (isMonster(x11, y))
+		return false;
+
+	else if (isMonster(x22, y))
+		return false;
+
+	else if (isMonster(x, y1))
+		return false;
+
+	else if (isMonster(x, y2))
+		return false;
+
+	else if (isMonster(x, y11))
+		return false;
+
+	else if (isMonster(x, y22))
+		return false;
+
+	// não posiciona na porta
+
+	else if (isPorta(x, y))
+		return false;
+
+	else if (isPorta(x1, y))
+		return false;
+
+	else if (isPorta(x11, y))
+		return false;
+
+	else if (isPorta(x2, y))
+		return false;
+
+	else if (isPorta(x22, y))
+		return false;
+
+	else if (isPorta(x, y1))
+		return false;
+
+	else if (isPorta(x, y11))
+		return false;
+
+	else if (isPorta(x, y2))
+		return false;
+
+	else if (isPorta(x, y22))
+		return false;
+
+	// não posiciona no jogador
+
+	else if (x == (getPlayerX() / 32) && y == (getPlayerY() / 32))
+		return false;
+
+	else if (x == (getPlayerX() / 32) + 1 && y == (getPlayerY() / 32))
+		return false;
+
+	else if (x == (getPlayerX() / 32) - 1 && y == (getPlayerY() / 32))
+		return false;
+
+	else if (x == (getPlayerX() / 32) && y == (getPlayerY() / 32) + 1)
+		return false;
+
+	else if (x == (getPlayerX() / 32) && y == (getPlayerY() / 32) - 1)
+		return false;
+
+	else
+		return true;
+}
+
+void InputJogo::atualizarBatalha()
+{
+	int px = getPlayerX() / 32;
+	int py = getPlayerY() / 32;
+
+	int mx, my;
+
+	int mon = 100;
+
+	// ataque
+	int patk = uniRandEntre(2, 12);
+	int matk;
+
+	patk += getPlayerAtk();
+
+	if (gTeclado.pressionou[TECLA_ESPACO]) {
+		// monstro existe
+	
+			for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+				mx = mapa[mapaAtual].getMonster(i).getX();
+				my = mapa[mapaAtual].getMonster(i).getY();
+
+				if (getPlayerX() / 32 == (mx / 32) + 1 || getPlayerX() / 32 == (mx / 32) - 1 || getPlayerY() / 32 == (my / 32) + 1 ||
+					getPlayerY() / 32 == (my / 32) - 1) {
+
+					mon = i;
+					break;
+				}
+			}
+
+			// se existe monstro
+			if (mon != 100) {
+				matk = mapa[mapaAtual].getMonster(mon).getAtk();
+				matk += uniRandEntre(2,12);
+				matk -= getPlayerDef();
+
+				if (matk < 0) 
+					matk = 1;
+				
+				matk = -matk; // negativo para causar dano
+
+
+
+				patk -= mapa[mapaAtual].getMonster(mon).getDef();
+
+				if (patk < 0) 
+					patk = 1;
+
+				patk = - patk; // negativo para causar dano
+
+				// alterar a vida
+				mapa[mapaAtual].getMonster(mon).setMoreHP(patk);
+				setPlayerHP(matk);
+
+				if (mapa[mapaAtual].getMonster(mon).getHP() <= 0) {
+					mapa[mapaAtual].getMonster(mon).setPos(-100, -100);
+				}
+
+			}
+
+		//	// monstro na esquerda
+		//	else if (mapa[mapaAtual].getTile(px - 1, py).isMonster()) {
+
+		//	}
+		//	// monstro em cima
+		//	else if (mapa[mapaAtual].getTile(px, py-1).isMonster()) {
+
+		//	}
+		//	// monstro embaixo
+		//	else if (mapa[mapaAtual].getTile(px, py+1).isMonster()) {
+
+		//	}
+	}
+}

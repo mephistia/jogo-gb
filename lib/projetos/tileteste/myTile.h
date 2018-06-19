@@ -10,14 +10,16 @@ public:
 
 	void createTile(int &id, std::string &nome, std::string &caminho, int &isSolid);
 
-	bool getSolid();
+	bool &getSolid();
+	bool &getPorta();
 	int getId();
 	Sprite getSprite();
 
 	void setSolid(bool s);
 
-	void setMonster(bool b);
-	bool isMonster();
+	void setMonster();
+	bool &isMonster();
+
 
 
 private:
@@ -28,7 +30,7 @@ private:
 	Sprite sprite;
 
 	
-	bool monster;
+	bool monster, door;
 
 };
 

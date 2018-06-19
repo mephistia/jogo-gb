@@ -8,6 +8,7 @@ Itens::Itens()
 	used = false;
 	primeirox = 300;
 	y = 730;
+	id = NULL;
 }
 
 
@@ -69,6 +70,41 @@ int Itens::getY()
 	return y;
 }
 
+int Itens::getId()
+{
+	return id;
+}
+
+int Itens::gethp()
+{
+	return bonusHP;
+}
+
+int Itens::getmaxhp()
+{
+	return bonusMaxHP;
+}
+
+int Itens::getdef()
+{
+	return bonusDef;
+}
+
+int Itens::getatk()
+{
+	return bonusAtk;
+}
+
+std::string Itens::getNome()
+{
+	return nome;
+}
+
+void Itens::setId(int id)
+{
+	this->id = id;
+}
+
 void Itens::desenhar()
 {
 	sprite.desenhar(x, y);
@@ -77,4 +113,9 @@ void Itens::desenhar()
 bool operator<(const Itens & a, const Itens & b)
 {
 	return a.id < b.id;
+}
+
+bool operator==(const Itens & a, const Itens & b)
+{
+	return a.id == b.id;
 }

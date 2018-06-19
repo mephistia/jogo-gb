@@ -84,6 +84,7 @@ public:
 	void setMoreAtk(int &atk);
 	void setMoreDef(int &def);
 	void setMoreHP(int &hp);
+	void setMoreMaxHP(int &maxhp);
 	void setMoreGold(int &gold);
 
 };

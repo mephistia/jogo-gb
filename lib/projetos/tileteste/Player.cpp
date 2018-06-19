@@ -177,7 +177,20 @@ void Player::setMoreDef(int & def)
 
 void Player::setMoreHP(int & hp)
 {
-	this->hp += hp;
+	int a = (this->hp + hp);
+
+
+	if (a < maxHP) {
+		this->hp = a;
+	}
+	else if (a >= maxHP) {
+		this->hp = maxHP;
+	}
+}
+
+void Player::setMoreMaxHP(int & maxhp)
+{
+	this->maxHP += maxhp;
 }
 
 void Player::setMoreGold(int & gold)

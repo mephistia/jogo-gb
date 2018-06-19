@@ -9,7 +9,6 @@
 #include <fstream>
 
 
-
 class InputJogo
 {
 public:
@@ -53,12 +52,14 @@ public:
 
 	void setPosPorta();
 	void setFirstMap();
+	bool &isPorta(int x, int y);
 
 	void setChests(int rx, int ry);
 	void setOpenChest(int rx, int ry);
 
 
-	bool isSolid(int &x, int &y);
+	bool isSolid(int x, int y);
+	bool isMonster(int x, int y);
 
 	Sprite getPlayerSprite();
 	int getPlayerX();
@@ -67,7 +68,7 @@ public:
 	Sprite getSpriteBau();
 
 	void desenhar();
-	void desenharItens();
+	
 	void atualizar();
 	void atualizarBag();
 
@@ -79,8 +80,20 @@ public:
 
 	void setPlayerGold(int gold);
 
+	// inventario
 	void addItem(int tipo);
+	void deleteItem(int id);
+	void desenharItens();
 
+	int getTotalItens();
+	
+	void addBonusItem(int bonusHP, int bonusMaxHP, int bonusDef, int bonusAtk);
+
+	// posição
+	bool podePosicionar(int x, int y);
+
+	// batalha
+	void atualizarBatalha();
 
 private:
 	myTilemap mapa[6];
@@ -99,7 +112,8 @@ private:
 	std::string *i_nome;
 	std::string *i_caminho;
 	int totalItens;
-	Itens bag[10];
+
+	Itens *bag;
 
 	// itens que o jogador pegou
 	int playerItens;

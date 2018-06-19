@@ -1,12 +1,21 @@
 9
 
+
 0 preto bin/assets/tiles/preto.jpg 
+
 1 chao bin/assets/tiles/chao.jpg 
+
 2 muro bin/assets/tiles/muro.jpg 
+
 3 porta_h bin/assets/tiles/porta_h.jpg 
+
 4 porta_v bin/assets/tiles/porta_v.jpg 
+
 5 obs1 bin/assets/tiles/obs1.jpg 
+
 6 obs2 bin/assets/tiles/obs2.jpg 
+
 7 bauaberto bin/assets/tiles/bauaberto.jpg 
+
 8 baufechado bin/assets/tiles/baufechado.jpg 
 
