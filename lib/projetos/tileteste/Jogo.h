@@ -2,19 +2,19 @@
 #include "libUnicornio.h"
 #include "InputJogo.h"
 #include "gTexto.h"
+#include "Pilha.h"
 
 enum idTelas {
 
-	// telas do enunciado
 	telaMenu,
 	telaRanking,
 	telaCreditos,
 	telaCarregar,
 	telaJogo,
+	telaSelect, 
+	telaGO,
+	telaCancel
 
-	// telas auxiliares
-	telaSelect,
-	telaInventario
 };
 
 class Jogo
@@ -33,9 +33,10 @@ public:
 	void tCreditos();
 	void tCarregar();
 	void tJogo();
-	void tSelect();
-	void tInventario();
-	
+	void tSelect();	
+	void tGameOver();
+	void tCancel();
+
 	void pos();
 
 	void colisoes();
@@ -46,6 +47,9 @@ private:
 	int randMapa, idTelas, *rx, *ry, numBaus, numMonstros;
 	
 	// sprites de telas
-	Sprite hud, selecao;
+	Sprite hud, chooseclass, mainmenu, gameover, cancelgame;
+
+	// pilha
+	Pilha<int> pilha;
 };
 

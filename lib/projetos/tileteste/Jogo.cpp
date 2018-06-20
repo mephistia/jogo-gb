@@ -15,13 +15,12 @@ void Jogo::inicializar()
 	srand(time(0));
 	uniRandSetSemente(time(NULL));
 
+	pilha.push(telaMenu);
 
 	//ler tiles
 	input.carregarTiles("bin/assets/tiles/configfix.txt");
 
-	// ler mapas
-	input.lerMapa(0,"bin/assets/tiles/mapa0.txt");
-	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
+
 
 	// ler itens txt
 	input.lerItens("bin/assets/sprites/itens.txt");
@@ -40,17 +39,23 @@ void Jogo::inicializar()
 	gRecursos.carregarSpriteSheet("pao", "bin/assets/sprites/pao.png", 1, 1);
 
 
-
-
-
 	// ler sprites de monstros
 	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);
 	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 4);
 	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/mghost.png", 4, 4);
 
-	// ler telas
-	gRecursos.carregarSpriteSheet("overlay", "bin/assets/sprites/overlay.png", 1, 1);
+	// ler telas (estados)
+	gRecursos.carregarSpriteSheet("overlay", "bin/assets/state/overlay2.png", 1, 1);
+	gRecursos.carregarSpriteSheet("chooseclass", "bin/assets/state/chooseclass.png", 1, 1);
+	gRecursos.carregarSpriteSheet("gameover", "bin/assets/state/gameover.png", 1, 1);
+	gRecursos.carregarSpriteSheet("mainmenu", "bin/assets/state/mainmenu.png", 1, 1);
+	gRecursos.carregarSpriteSheet("cancelgame", "bin/assets/state/cancelgame.png", 1, 1);
+
 	hud.setSpriteSheet("overlay");
+	chooseclass.setSpriteSheet("chooseclass");
+	gameover.setSpriteSheet("gameover");
+	mainmenu.setSpriteSheet("mainmenu");
+	cancelgame.setSpriteSheet("cancelgame");
 
 
 
@@ -67,7 +72,7 @@ void Jogo::inicializar()
 	for (int i = 0; i < numtxt; i++) {      
 		txt[i].setFont("font");
 		txt[i].centralizar();
-		txt[i].cor(98, 80, 47); //
+		txt[i].cor(255, 246, 242); //
 	}
 
 
@@ -75,50 +80,8 @@ void Jogo::inicializar()
 	input.lerMonstros("bin/assets/sprites/monstersfix.txt");
 
 
-	// inicializar classes
-	input.iniciaMage("mage");
-	input.iniciaThief("thief");
-	input.iniciaWarrior("warrior");
-
-	
-	
-	// selecionar rand teste
-	int r = uniRandEntre(1, 3);
-	input.selectClass(r);
-
 	
 
-	// mapa aleatorio
-	randMapa = uniRandEntre(0, 1);
-	input.setMapaAtual(randMapa);
-
-	// mapa atual é o primeiro
-	input.setFirstMap();
-
-	// setar posições iniciais de capa mapa
-	if (randMapa == 0) {
-		input.setPosInicial0();
-		
-	}
-	else if (randMapa == 1) {
-		input.setPosInicial1();
-	}
-
-	// setar as posições de monstros e baus
-	pos();
-
-	// setar texto da classe
-	if (input.getClass() == 1) {
-		txt[0].setTxt("Mage");
-	}
-	else if (input.getClass() == 2) {
-		txt[0].setTxt("Valkyrie");
-	}
-	else if (input.getClass() == 3) {
-		txt[0].setTxt("Rogue");
-	}
-
-	idTelas = telaJogo;
 }
 
 void Jogo::finalizar()
@@ -136,7 +99,7 @@ void Jogo::executar()
 	{
 		uniIniciarFrame();
 
-		switch (idTelas) {
+		switch (pilha.top()) {
 		case telaMenu:
 			tMenu();
 			break;
@@ -155,8 +118,11 @@ void Jogo::executar()
 		case telaSelect:
 			tSelect();
 			break;
-		case telaInventario:
-			tInventario();
+		case telaGO:
+			tGameOver();
+			break;
+		case telaCancel:
+			tCancel();
 			break;
 		}
 
@@ -168,6 +134,16 @@ void Jogo::executar()
 
 void Jogo::tMenu()
 {
+	mainmenu.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+
+
+	if (gTeclado.pressionou[TECLA_1]) {
+	
+
+		// ir para tela de seleção
+		pilha.push(telaSelect);
+
+	}
 }
 
 void Jogo::tRanking()
@@ -184,6 +160,10 @@ void Jogo::tCarregar()
 
 void Jogo::tJogo()
 {
+
+	if (gTeclado.pressionou[TECLA_VOLTAR]) {
+		pilha.push(telaCancel);
+	}
 	bool bag = false;
 
 	// desenhar primeiro mapa aleatoriamente
@@ -196,9 +176,18 @@ void Jogo::tJogo()
 	// testar as colisões
 	colisoes();
 
+	// testar vida
+	if (input.getPlayerHP() <= 0) {
+		pilha.push(telaGO);
+	}
+
+
+	// atualizar e desenhar
 	input.atualizar();
 	input.atualizarBag();
 	input.desenhar();
+
+
 	// atualizar textos ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
 	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
 	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
@@ -207,37 +196,149 @@ void Jogo::tJogo()
 
 	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
 	
-	txt[0].desenhar(925, 170);
+	txt[0].desenhar(925, 185);
 	input.desenharItens();
 	
 	int tX, tY;
 	tX = 930;
-	tY = 220;
+	tY = 240;
 	txt[1].desenhar(tX, tY);
-	txt[2].desenhar(tX, tY += 72);
-	txt[3].desenhar(tX, tY += 72);
-	txt[4].desenhar(tX, tY += 72);
+	txt[2].desenhar(tX, tY += 60);
+	txt[3].desenhar(tX, tY += 60);
+	txt[4].desenhar(tX, tY += 60);
 
 
 }
 
 void Jogo::tSelect()
 {
+	txt[0].setTxt("");
+	input.unselectAll();
+
+	// sortear quantidade de salas
+	int qtSalas = uniRandEntre(9, 15);
+	input.criarSalas(qtSalas);
+
+	// -------------------------------------     NOVO JOGO     -------------------------------------------------
+	// ler mapas
+	input.lerMapa(0, "bin/assets/tiles/mapa0.txt");
+	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
+
+	// mapa aleatorio
+	randMapa = uniRandEntre(0, 1);
+	input.setMapaAtual(randMapa);
+
+	// mapa atual é o primeiro
+	input.setFirstMap();
+
+
+
+	// setar as posições de monstros e baus
+	pos();
+
+	// inicializar
+	input.iniciaMage("mage");
+	input.iniciaThief("thief");
+	input.iniciaWarrior("warrior");
+
+	input.selectClass(NULL);
+
+	input.newBag();
+
+	
+
+	// desenhar a tela
+	chooseclass.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+
+	if (gTeclado.pressionou[TECLA_VOLTAR]) {
+		pilha.pop();
+	}
+
+	if (gTeclado.pressionou[TECLA_1]) {
+		input.selectClass(1);
+		// setar posições iniciais de capa mapa
+		if (randMapa == 0) {
+			input.setPosInicial0();
+
+		}
+		else if (randMapa == 1) {
+			input.setPosInicial1();
+		}
+		txt[0].setTxt("Mage");
+
+		pilha.push(telaJogo);
+	}
+
+	if (gTeclado.pressionou[TECLA_2]) {
+		input.selectClass(2);
+		// setar posições iniciais de capa mapa
+		if (randMapa == 0) {
+			input.setPosInicial0();
+
+		}
+		else if (randMapa == 1) {
+			input.setPosInicial1();
+		}
+		txt[0].setTxt("Valkyrie");
+
+		pilha.push(telaJogo);
+
+	}
+
+	if (gTeclado.pressionou[TECLA_3]) {
+		input.selectClass(3);
+		// setar posições iniciais de capa mapa
+		if (randMapa == 0) {
+			input.setPosInicial0();
+
+		}
+		else if (randMapa == 1) {
+			input.setPosInicial1();
+		}
+		txt[0].setTxt("Rogue");
+
+		pilha.push(telaJogo);
+
+	}
 }
 
-void Jogo::tInventario()
+void Jogo::tGameOver()
 {
+	gameover.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+
+	
+	if (gTeclado.pressionou[TECLA_VOLTAR]) {
+		do {
+			pilha.pop();
+		} while (pilha.top() != 0);
+	}
 	
 }
+
+void Jogo::tCancel()
+{
+	cancelgame.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+	if (gTeclado.pressionou[TECLA_1]) {
+		do {
+			pilha.pop();
+		} while (pilha.top() != 0);
+	}
+
+	if (gTeclado.pressionou[TECLA_2]) {
+		pilha.pop();
+	}
+}
+
+
 
 void Jogo::pos()
 {
 	// monstros no mapa
-	numMonstros = 3; /*uniRandEntre(0, 5);*/
+	numMonstros = uniRandEntre(0, 5);
 	input.iniciaMonstros(numMonstros);
 
 	// baus
-	numBaus = 2;       /*uniRandEntre(0, 2); */
+	numBaus = uniRandEntre(0, 2); 
 	rx = new int[numBaus];
 	ry = new int[numBaus];
 
@@ -301,7 +402,5 @@ void Jogo::colisoes()
 
 	}
 	
-	// colisao monstro
-
 }
 

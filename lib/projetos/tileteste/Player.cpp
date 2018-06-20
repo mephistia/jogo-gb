@@ -149,7 +149,7 @@ float Player::getAncoraY()
 
 void Player::setAtk()
 {
-	int r = rand() % 11 + 2;
+	int r = uniRandEntre(5, 12);
 	atk = r;
 }
 
@@ -160,7 +160,7 @@ void Player::setDef()
 
 void Player::setHP()
 {
-	int r = rand() % 11 + 2;
+	int r = uniRandEntre(6, 12);
 	hp = r;
 	maxHP = r;
 }

@@ -97,9 +97,17 @@ public:
 	// batalha
 	void atualizarBatalha();
 
+	// zerar 
+	void newBag();
+	void unselectAll();
+	void resetMonsters();
+
+	void criarSalas(int n);
+
 private:
-	myTilemap mapa[6];
-	int mapaAtual, nMonstros;
+	myTilemap mapas[6]; // tipo do mapa
+	myTilemap *mapa;
+	int mapaAtual, nMonstros, nMapas; // mapas no total do jogo
 	Mage mage;
 	Warrior warrior;
 	Thief thief;

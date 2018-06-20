@@ -61,36 +61,124 @@ void InputJogo::iniciaMage(std::string sheet)
 
 void InputJogo::atualizarMage()
 {
+
 	if (mage.isSelected()) {
+		bool podemover = false;
+
 
 		if (!mage.estaMovendo()) {
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (mapa[mapaAtual].getTile((mage.getX()/32) + 1, (mage.getY()/32)).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).isMonster()) {
-					mage.movDir();
+				if (mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						mage.movDir();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if (((getPlayerX() / 32) + 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32))) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+
+						}
+					}
+					
+					if (podemover)
+						mage.movDir();
+
+					podemover = false;
+
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).isMonster()) {
-					mage.movEsq();
+				if (mapa[mapaAtual].getTile((mage.getX()/32) - 1, (mage.getY()/32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						mage.movEsq();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if (((getPlayerX() / 32) - 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32))) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+
+						}
+					}
+
+					if (podemover)
+						mage.movEsq();
+
+					podemover = false;
+					
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).isMonster()) {
-					mage.movCima();
+				if (mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) - 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						mage.movCima();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) - 1 == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+
+					if (podemover)
+						mage.movCima();
+					podemover = false;
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (mapa[mapaAtual].getTile((mage.getX()/32), (mage.getY()/32) + 1).getId() == 1 && !mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).isMonster()) {
-					mage.movBaixo();
+				if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						mage.movBaixo();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) + 1 == (my / 32)) {
+
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+
+					if (podemover)
+						mage.movBaixo();
+
+					podemover = false;
 				}
+					
 			}
 		}
 		
@@ -112,34 +200,116 @@ void InputJogo::iniciaWarrior(std::string sheet)
 void InputJogo::atualizarWarrior()
 {
 	if (warrior.isSelected()) {
+		bool podemover = false;
 
 		if (!warrior.estaMovendo()) {
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).isMonster()) {
-					warrior.movDir();
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						warrior.movDir();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) + 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+					
+					if (podemover)
+						warrior.movDir();
+
+					podemover = false;
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).isMonster()) {
-					warrior.movEsq();
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						warrior.movEsq();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) - 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+					
+					if (podemover)
+						warrior.movEsq();
+
+					podemover = false;
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).isMonster()) {
-					warrior.movCima();
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						warrior.movCima();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) - 1 == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+					
+					if (podemover)
+						warrior.movCima();
+
+					podemover = false;
 				}
+
+		
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getId() == 1 && !mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).isMonster()) {
-					warrior.movBaixo();
+				if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						warrior.movBaixo();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) + 1 == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+					if (podemover)
+						warrior.movBaixo();
+
+					podemover = false;
 				}
 			}
 		}
@@ -160,34 +330,116 @@ void InputJogo::iniciaThief(std::string sheet)
 void InputJogo::atualizarThief()
 {
 	if (thief.isSelected()) {
+		bool podemover = false;
 
 		if (!thief.estaMovendo()) {
 
 			// mover direita
 			if (gTeclado.pressionou[TECLA_D]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).isMonster()) {
-					thief.movDir();
+				if (mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						thief.movDir();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) + 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32)) {
+								podemover = false;
+								break;
+							}
+							else
+								podemover = true;
+						}
+					}
+					if (podemover)
+						thief.movDir();
+
+					podemover = false;
 				}
 			}
 
 			// mover esquerda
 			else if (gTeclado.pressionou[TECLA_A]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).isMonster()) {
-					thief.movEsq();
+				if (mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						thief.movEsq();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) - 1 == (mx / 32) && (getPlayerY() / 32) == (my / 32)) {
+								podemover = false;
+								break;
+
+							}
+							else
+								podemover = true;
+						}
+					}
+					if (podemover)
+						thief.movEsq();
+
+					podemover = false;
 				}
 			}
 
 			// mover cima
 			else if (gTeclado.pressionou[TECLA_W]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).isMonster()) {
-					thief.movCima();
+				if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						thief.movCima();
+					}
+					else {
+						for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+							int mx = mapa[mapaAtual].getMonster(i).getX();
+							int my = mapa[mapaAtual].getMonster(i).getY();
+
+							if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) - 1 == (my / 32)) {
+								podemover = false;
+								break;
+
+							}
+							else
+								podemover = true;
+						}
+					}
+					if (podemover)
+						thief.movCima();
+
+					podemover = false;
+					
 				}
 			}
 
 			// mover baixo
 			else if (gTeclado.pressionou[TECLA_S]) {
-				if (!mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getSolid() && !mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).isMonster()) {
-					thief.movBaixo();
+				if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getId() == 1) {
+					if (mapa[mapaAtual].getNMonsters() == 0) {
+						thief.movBaixo();
+					}
+					else {
+
+					}for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+						int mx = mapa[mapaAtual].getMonster(i).getX();
+						int my = mapa[mapaAtual].getMonster(i).getY();
+
+						if ((getPlayerX() / 32) == (mx / 32) && (getPlayerY() / 32) + 1 == (my / 32)) {
+							podemover = false;
+							break;
+
+						}
+						else
+							podemover = true;
+					}
+					
+					if (podemover)
+						thief.movBaixo();
+
+					podemover = false;
 				}
 			}
 		}
@@ -637,9 +889,6 @@ void InputJogo::atualizarBag()
 	// tecla 1 = 30
 	// tecla 0 = 39
 	
-	
-	
-	
 	int i = 0;
 
 	for (int tecla = 30; tecla < 40; tecla++) { // tecla 1 a 9
@@ -971,17 +1220,31 @@ void InputJogo::atualizarBatalha()
 
 			}
 
-		//	// monstro na esquerda
-		//	else if (mapa[mapaAtual].getTile(px - 1, py).isMonster()) {
-
-		//	}
-		//	// monstro em cima
-		//	else if (mapa[mapaAtual].getTile(px, py-1).isMonster()) {
-
-		//	}
-		//	// monstro embaixo
-		//	else if (mapa[mapaAtual].getTile(px, py+1).isMonster()) {
-
-		//	}
 	}
+}
+
+void InputJogo::newBag()
+{
+	bag = new Itens[10]; // inventario maximo
+	playerItens = 0;
+	lista.clear();
+
+}
+
+void InputJogo::unselectAll()
+{
+	mage.unselect();
+	warrior.unselect();
+	thief.unselect();
+}
+
+void InputJogo::resetMonsters()
+{
+	mapa[mapaAtual].setMonstersDone(true);
+
+}
+
+void InputJogo::criarSalas(int n)
+{
+	mapa = new myTilemap[n];
 }

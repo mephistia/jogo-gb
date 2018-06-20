@@ -6,8 +6,8 @@ Itens::Itens()
 {
 	inBag = false;
 	used = false;
-	primeirox = 300;
-	y = 730;
+	primeirox = 310;
+	y = 735;
 	id = NULL;
 }
 
@@ -34,7 +34,7 @@ void Itens::create(int id, std::string nome, std::string caminho, int bonusHP, i
 	this->bonusMaxHP = bonusMaxHP;
 	this->caminho = caminho;
 
-	x = primeirox + (id * 42);
+	x = primeirox + (id * 45);
 
 	addBag();
 }

@@ -1,7 +1,7 @@
 3
 
-0 rat 3 10 bin/assets/sprites/mrat.png
+0 rat 3 5 bin/assets/sprites/mrat.png
 
-1 bat 5 15 bin/assets/sprites/mbat.png
+1 bat 5 10 bin/assets/sprites/mbat.png
 
-2 ghost 6 22 bin/assets/sprites/mghost.png
+2 ghost 3 15 bin/assets/sprites/mghost.png
