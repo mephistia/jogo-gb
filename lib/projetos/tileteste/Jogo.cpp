@@ -27,9 +27,9 @@ void Jogo::inicializar()
 	input.lerItens("bin/assets/sprites/itens.txt");
 
 	// ler sprites de personagem
-	gRecursos.carregarSpriteSheet("mage", "bin/assets/sprites/mage.png", 4, 4);
-	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 4);
-	gRecursos.carregarSpriteSheet("thief", "bin/assets/sprites/thief.png", 4, 4);
+	gRecursos.carregarSpriteSheet("mage", "bin/assets/sprites/mage.png",4,3);
+	gRecursos.carregarSpriteSheet("warrior", "bin/assets/sprites/warrior.png", 4, 3);
+	gRecursos.carregarSpriteSheet("thief", "bin/assets/sprites/thief.png", 4, 3);
 	
 	// ler sprites de itens
 	gRecursos.carregarSpriteSheet("armadura", "bin/assets/sprites/armadura.png", 1, 1);
@@ -59,7 +59,7 @@ void Jogo::inicializar()
 	txt = new gTexto[numtxt];
 
 	// ler fonte
-	gRecursos.carregarFonte("font", "bin/assets/fonts/medieval.ttf", 45);
+	gRecursos.carregarFonte("font", "bin/assets/fonts/medieval.ttf", 30);
 
 	
 	// texto 0 = classe, 1 a 4 = status
@@ -67,7 +67,7 @@ void Jogo::inicializar()
 	for (int i = 0; i < numtxt; i++) {      
 		txt[i].setFont("font");
 		txt[i].centralizar();
-		txt[i].cor(98, 80, 47);
+		txt[i].cor(98, 80, 47); //
 	}
 
 
@@ -109,13 +109,13 @@ void Jogo::inicializar()
 
 	// setar texto da classe
 	if (input.getClass() == 1) {
-		txt[0].setTxt("Mago");
+		txt[0].setTxt("Mage");
 	}
 	else if (input.getClass() == 2) {
-		txt[0].setTxt("Guerreiro");
+		txt[0].setTxt("Valkyrie");
 	}
 	else if (input.getClass() == 3) {
-		txt[0].setTxt("Ladino");
+		txt[0].setTxt("Rogue");
 	}
 
 	idTelas = telaJogo;
