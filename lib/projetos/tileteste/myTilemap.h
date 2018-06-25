@@ -18,9 +18,6 @@ public:
 
 	bool getVisited();
 	void setVisited(bool v);
-	
-	bool getFirst();
-	void setFirst(bool f);
 
 	void setTile(int x, int y, int id);
 
@@ -34,12 +31,15 @@ public:
 	void inicializaMonstro(int i, int id, int def, int hp, std::string nome, std::string caminho);
 	Monster& getMonster(int &i);
 
+
 private:
 	myTile * tiles;
 	int totalTiles, tileSize;
 	int map[32][24]; // 32 colunas, 24 linhas
 	int mapId, numMonsters;
 	bool visited, first, monstersDone;
+	int idporta[2];
+	int aux;
 	Monster *m;
 };
 

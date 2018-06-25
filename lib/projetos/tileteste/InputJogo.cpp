@@ -624,22 +624,18 @@ void InputJogo::setPosInicial1()
 
 void InputJogo::setPosPorta()
 {
-	// se o mapa é o primeiro
-	if (mapa[mapaAtual].getFirst()) {
 		if (getClass() == 1) {
 
 			// se for porta vertical e em cima for solido
 			if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) - 1).getSolid()) {
 				mage.setPos((mage.getX() / 32), (mage.getY() / 32) + 2);
 				mage.setAnimBaixo();
-				mapa[mapaAtual].setFirst(false);
 			}
 
 			// se for porta vertical e embaixo for solido
 			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32) + 1).getSolid()) {
 				mage.setPos((mage.getX()/32), (mage.getY()/32) - 2);
 				mage.setAnimCima();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -647,7 +643,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((mage.getX() / 32) + 1, (mage.getY() / 32)).getSolid()) {
 				mage.setPos((mage.getX()/32) - 2 , (mage.getY()/32));
 				mage.setAnimEsq();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -655,7 +650,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((mage.getX() / 32), (mage.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((mage.getX() / 32) - 1, (mage.getY() / 32)).getSolid()) {
 				mage.setPos((mage.getX()/32) +2, (mage.getY()/32));
 				mage.setAnimDir();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 		}
@@ -665,7 +659,6 @@ void InputJogo::setPosPorta()
 			if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) - 1).getSolid()) {
 				warrior.setPos((warrior.getX()/32), (warrior.getY()/32) + 2);
 				warrior.setAnimBaixo();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -673,7 +666,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32) + 1).getSolid()) {
 				warrior.setPos((warrior.getX() / 32), (warrior.getY() / 32) - 2);
 				warrior.setAnimCima();
-				mapa[mapaAtual].setFirst(false);
 
 
 			}
@@ -682,7 +674,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((warrior.getX() / 32) + 1, (warrior.getY() / 32)).getSolid()) {
 				warrior.setPos((warrior.getX() / 32) - 2, (warrior.getY() / 32));
 				warrior.setAnimEsq();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -690,7 +681,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((warrior.getX() / 32), (warrior.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((warrior.getX() / 32) - 1, (warrior.getY() / 32)).getSolid()) {
 				warrior.setPos((warrior.getX() / 32) + 2, (warrior.getY() / 32));
 				warrior.setAnimDir();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 		}
@@ -700,7 +690,6 @@ void InputJogo::setPosPorta()
 			if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) - 1).getSolid()) {
 				thief.setPos((thief.getX() / 32), (thief.getY() / 32) + 2);
 				thief.setAnimBaixo();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -708,7 +697,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 4 && mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32) + 1).getSolid()) {
 				thief.setPos((thief.getX() / 32), (thief.getY() / 32) - 2);
 				thief.setAnimCima();
-				mapa[mapaAtual].setFirst(false);
 
 
 			}
@@ -717,7 +705,6 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((thief.getX() / 32) + 1, (thief.getY() / 32)).getSolid()) {
 				thief.setPos((thief.getX() / 32) -2, (thief.getY() / 32));
 				thief.setAnimEsq();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 
@@ -725,17 +712,12 @@ void InputJogo::setPosPorta()
 			else if (mapa[mapaAtual].getTile((thief.getX() / 32), (thief.getY() / 32)).getId() == 3 && mapa[mapaAtual].getTile((thief.getX() / 32) - 1, (thief.getY() / 32)).getSolid()) {
 				thief.setPos((thief.getX() / 32) + 2, (thief.getY() / 32));
 				thief.setAnimDir();
-				mapa[mapaAtual].setFirst(false);
 
 			}
 		}
-	}
+	
 }
 
-void InputJogo::setFirstMap()
-{
-	mapa[mapaAtual].setFirst(true);
-}
 
 bool &InputJogo::isPorta(int x, int y)
 {
@@ -888,8 +870,11 @@ void InputJogo::atualizarBag()
 
 	// tecla 1 = 30
 	// tecla 0 = 39
+	// 58 A 67  - F1 a F10
 	
 	int i = 0;
+	
+
 
 	for (int tecla = 30; tecla < 40; tecla++) { // tecla 1 a 9
 		if (gTeclado.pressionou[tecla]) {
@@ -904,7 +889,18 @@ void InputJogo::atualizarBag()
 			}
 		}
 
+
 		i++; //incrementa i de fora
+	}
+
+	i = 0;
+	for (int tecla = 58; tecla < 68; tecla++) {
+		if (gTeclado.pressionou[tecla]) {
+			if (bag[i].isInBag()) {
+				deleteItem(i);
+				break;
+			}
+		}
 	}
 	
 }
@@ -1173,44 +1169,56 @@ void InputJogo::atualizarBatalha()
 	int patk = uniRandEntre(2, 12);
 	int matk;
 
+	bool dir, esq, cima, baixo;
+
+
+
 	patk += getPlayerAtk();
 
 	if (gTeclado.pressionou[TECLA_ESPACO]) {
-		// monstro existe
-	
-			for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
-				mx = mapa[mapaAtual].getMonster(i).getX();
-				my = mapa[mapaAtual].getMonster(i).getY();
 
-				if (getPlayerX() / 32 == (mx / 32) + 1 || getPlayerX() / 32 == (mx / 32) - 1 || getPlayerY() / 32 == (my / 32) + 1 ||
-					getPlayerY() / 32 == (my / 32) - 1) {
+		if (mapa[mapaAtual].getNMonsters() != 0) {
+			// monstro existe
+
+			for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
+				mx = mapa[mapaAtual].getMonster(i).getX() / 32;
+				my = mapa[mapaAtual].getMonster(i).getY() / 32;
+
+				esq = (px == mx - 1 && py == my);
+				dir = (px == mx + 1 && py == my);
+				baixo = (py == my + 1 && px == mx);
+				cima = (py == my - 1 && px == mx);
+
+				if (dir || esq || baixo || cima) {
 
 					mon = i;
 					break;
 				}
+				else
+					mon = 100;
 			}
 
 			// se existe monstro
 			if (mon != 100) {
 				matk = mapa[mapaAtual].getMonster(mon).getAtk();
-				matk += uniRandEntre(2,12);
+				matk += uniRandEntre(2, 12);
 				matk -= getPlayerDef();
 
-				if (matk < 0) 
+				if (matk < 0)
 					matk = 1;
-				
+
 				matk = -matk; // negativo para causar dano
 
 
 
 				patk -= mapa[mapaAtual].getMonster(mon).getDef();
 
-				if (patk < 0) 
+				if (patk < 0)
 					patk = 1;
 
-				patk = - patk; // negativo para causar dano
+				patk = -patk; // negativo para causar dano
 
-				// alterar a vida
+							  // alterar a vida
 				mapa[mapaAtual].getMonster(mon).setMoreHP(patk);
 				setPlayerHP(matk);
 
@@ -1218,7 +1226,12 @@ void InputJogo::atualizarBatalha()
 					mapa[mapaAtual].getMonster(mon).setPos(-100, -100);
 				}
 
+				// volta para primeiro estado
+				mon = 100;
 			}
+		}
+		
+		
 
 	}
 }

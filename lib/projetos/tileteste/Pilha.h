@@ -78,6 +78,8 @@ public:
 		
 		 if (tam == 1) {
 			clear();
+			tam--;
+
 		}
 		else {
 			ultimo->anterior->proximo = NULL;
@@ -113,6 +115,15 @@ public:
 		}
 		
 	}
+
+	// confere se a pilha de redo está vazia
+	void Pilha<T>::isRedoEmpty() {
+		if (_undo->tam > 0)
+			return false;
+		else
+			return true;
+	}
+
 
 	// redo todos da outra pilha
 	void Pilha<T>::redo_all() {

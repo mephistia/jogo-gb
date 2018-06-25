@@ -8,6 +8,7 @@ myTilemap::myTilemap()
 	first = false;
 	monstersDone = false;
 	numMonsters = 0;
+	aux = 0;
 }
 
 
@@ -87,15 +88,7 @@ void myTilemap::setVisited(bool v)
 	visited = v;
 }
 
-bool myTilemap::getFirst()
-{
-	return first;
-}
 
-void myTilemap::setFirst(bool f)
-{
-	first = f;
-}
 
 void myTilemap::setTile(int x, int y, int id)
 {

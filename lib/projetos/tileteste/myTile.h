@@ -29,6 +29,7 @@ private:
 	std::string caminho;
 	Sprite sprite;
 
+	int idporta;
 	
 	bool monster, door;
 

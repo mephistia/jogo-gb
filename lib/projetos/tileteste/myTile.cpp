@@ -26,11 +26,14 @@ void myTile::createTile(int &id, std::string& nome, std::string& caminho, int &i
 
 	sprite.setSpriteSheet(nome);
 
-	if (id == 3)
+	if (id == 3) {
 		door = true;
 
-	else if (id == 4)
+	}
+
+	else if (id == 4) {
 		door = true;
+	}
 
 	else
 		door = false;

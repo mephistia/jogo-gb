@@ -1,0 +1,63 @@
+foda-se a direção, só gera, existem corredores!!!
+
+
+gerar 6 tipos de mapas
+mapa[tipos]
+carregar todos os tipos
+
+r = random entre 9 e 15
+myTile salas[r]
+
+PRIMEIRA SALA SÓ TEM 1 PORTA DISPONÍVEL (para baixo)
+
+tipo = random entre 0 e 5
+
+salas[0] carrega com o txt do tipo.
+
+setar o jogador na posição inicial (porta de cima)
+// criar método para setar o jogador na posição de volta
+
+
+adicionar salas[0] na pilha
+atual = 0;
+
+// loop lendo da pilha (top)
+
+se o jogador quiser andar para onde existe um tile de id 3 ou 4 // porta
+	se o jogador estiver andando para baixo (seu y > metade da janela)
+		se a pilha de redo estiver vazia e !sala[atual].getFim()
+			gerar um tipo random
+			atual +=1
+			salas[atual] lê tipo random
+			setar o jogador na posição inicial de acordo com o tipo
+			adicionar salas[atual] na pilha
+			se atual >9 && !=15
+				random = de 1 a 6 
+				se random == 1
+					salas[atual].setFim()
+			se não, se atual == 15
+				salas[atual].setFim()
+
+		se não, se isRedoEmpty == false
+			redo() // adiciona na pilha o top da pilha de redo
+			atual +=1
+			setar o jogador na posição inicial
+
+	se não, se o jogador estiver andando para cima (seu y < metade da janela)
+		se isRedoEmpty == true // se eu não voltei ainda
+			undo() // retorna para a sala anterior e adiciona a sala atual na pilha de redo
+			atual -=1
+			setar o jogador na posição de volta
+			
+
+
+
+
+
+
+
+
+
+
+
+

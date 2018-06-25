@@ -17,6 +17,12 @@ void Jogo::inicializar()
 
 	pilha.push(telaMenu);
 
+	// ler musica
+	gRecursos.carregarMusica("m", "bin/assets/audio/nf.ogg");
+	gMusica.setVolumeGlobal(100);
+	
+
+
 	//ler tiles
 	input.carregarTiles("bin/assets/tiles/configfix.txt");
 
@@ -94,10 +100,15 @@ void Jogo::finalizar()
 
 void Jogo::executar()
 {
+	if (!gTeclado.pressionou[TECLA_ESC])
+		gMusica.tocar("m", true);
 
 	while(!gTeclado.soltou[TECLA_ESC] && !gEventos.sair)
 	{
 		uniIniciarFrame();
+
+	
+
 
 		switch (pilha.top()) {
 		case telaMenu:
@@ -138,7 +149,7 @@ void Jogo::tMenu()
 
 
 	if (gTeclado.pressionou[TECLA_1]) {
-	
+
 
 		// ir para tela de seleção
 		pilha.push(telaSelect);
@@ -308,9 +319,13 @@ void Jogo::tGameOver()
 
 	
 	if (gTeclado.pressionou[TECLA_VOLTAR]) {
+		
+
 		do {
 			pilha.pop();
 		} while (pilha.top() != 0);
+
+
 	}
 	
 }
@@ -319,6 +334,7 @@ void Jogo::tCancel()
 {
 	cancelgame.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
 	if (gTeclado.pressionou[TECLA_1]) {
+
 		do {
 			pilha.pop();
 		} while (pilha.top() != 0);

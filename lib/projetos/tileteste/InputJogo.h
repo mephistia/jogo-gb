@@ -51,7 +51,6 @@ public:
 	void setPosInicial1();
 
 	void setPosPorta();
-	void setFirstMap();
 	bool &isPorta(int x, int y);
 
 	void setChests(int rx, int ry);
