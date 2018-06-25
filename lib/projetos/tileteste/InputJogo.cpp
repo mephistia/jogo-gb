@@ -1253,11 +1253,12 @@ void InputJogo::unselectAll()
 
 void InputJogo::resetMonsters()
 {
-	mapa[mapaAtual].setMonstersDone(true);
+	mapa[mapaAtual].setMonstersDone(false);
 
 }
 
-void InputJogo::criarSalas(int n)
+void InputJogo::criarSalas(int qt)
 {
-	mapa = new myTilemap[n];
+	sala = new myTilemap[qt];
 }
+

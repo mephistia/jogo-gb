@@ -159,7 +159,6 @@ private:
 	Nodo<T> *primeiro; //base
 	Nodo<T> *ultimo; // topo
 	Pilha<T> *_undo; // pilha para redo
-	T *palavra;
 	int tam, cont;
 
 };

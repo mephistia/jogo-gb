@@ -82,11 +82,12 @@ void Jogo::inicializar()
 	}
 
 
+
 	// ler monstros
 	input.lerMonstros("bin/assets/sprites/monstersfix.txt");
 
 
-	
+
 
 }
 
@@ -223,24 +224,26 @@ void Jogo::tJogo()
 
 void Jogo::tSelect()
 {
+
 	txt[0].setTxt("");
 	input.unselectAll();
 
-	// sortear quantidade de salas
-	int qtSalas = uniRandEntre(9, 15);
-	input.criarSalas(qtSalas);
 
 	// -------------------------------------     NOVO JOGO     -------------------------------------------------
+		// sortear quantidade de salas
+	int tipoSalas = uniRandEntre(9, 15);
+	input.criarSalas(tipoSalas);
+
 	// ler mapas
 	input.lerMapa(0, "bin/assets/tiles/mapa0.txt");
 	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
+
 
 	// mapa aleatorio
 	randMapa = uniRandEntre(0, 1);
 	input.setMapaAtual(randMapa);
 
-	// mapa atual é o primeiro
-	input.setFirstMap();
+	input.resetMonsters();
 
 
 

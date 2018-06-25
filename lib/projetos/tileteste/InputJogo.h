@@ -101,11 +101,12 @@ public:
 	void unselectAll();
 	void resetMonsters();
 
-	void criarSalas(int n);
+	void criarSalas(int qt);
 
 private:
-	myTilemap mapas[6]; // tipo do mapa
-	myTilemap *mapa;
+	myTilemap mapa[6]; // tipo do mapa
+	myTilemap *sala;
+	//myTilemap *mapa;
 	int mapaAtual, nMonstros, nMapas; // mapas no total do jogo
 	Mage mage;
 	Warrior warrior;
