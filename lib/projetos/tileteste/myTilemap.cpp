@@ -14,6 +14,7 @@ myTilemap::myTilemap()
 
 myTilemap::~myTilemap()
 {
+
 }
 
 void myTilemap::ler(std::string arquivo)

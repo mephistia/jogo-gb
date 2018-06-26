@@ -46,9 +46,9 @@ void Jogo::inicializar()
 
 
 	// ler sprites de monstros
-	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 4);
-	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 4);
-	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/mghost.png", 4, 4);
+	gRecursos.carregarSpriteSheet("rat", "bin/assets/sprites/mrat.png", 4, 3);
+	gRecursos.carregarSpriteSheet("bat", "bin/assets/sprites/mbat.png", 4, 3);
+	gRecursos.carregarSpriteSheet("ghost", "bin/assets/sprites/mghost.png", 4, 3);
 
 	// ler telas (estados)
 	gRecursos.carregarSpriteSheet("overlay", "bin/assets/state/overlay2.png", 1, 1);
@@ -95,6 +95,7 @@ void Jogo::finalizar()
 {
 	
 	gRecursos.descarregarTudo();
+
 
 	uniFinalizar();
 }
@@ -169,59 +170,6 @@ void Jogo::tCreditos()
 void Jogo::tCarregar()
 {
 }
-
-void Jogo::tJogo()
-{
-
-	if (gTeclado.pressionou[TECLA_VOLTAR]) {
-		pilha.push(telaCancel);
-	}
-	bool bag = false;
-
-	// desenhar primeiro mapa aleatoriamente
-	input.getMap(randMapa).desenhar();
-
-	// setar posição do jogador se o tile for porta e o mapa é o primeiro
-	input.setPosPorta();
-
-
-	// testar as colisões
-	colisoes();
-
-	// testar vida
-	if (input.getPlayerHP() <= 0) {
-		pilha.push(telaGO);
-	}
-
-
-	// atualizar e desenhar
-	input.atualizar();
-	input.atualizarBag();
-	input.desenhar();
-
-
-	// atualizar textos ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
-	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
-	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
-	txt[3].setTxt(std::to_string(input.getPlayerDef()));
-	txt[4].setTxt(std::to_string(input.getPlayerGold()));
-
-	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
-	
-	txt[0].desenhar(925, 185);
-	input.desenharItens();
-	
-	int tX, tY;
-	tX = 930;
-	tY = 240;
-	txt[1].desenhar(tX, tY);
-	txt[2].desenhar(tX, tY += 60);
-	txt[3].desenhar(tX, tY += 60);
-	txt[4].desenhar(tX, tY += 60);
-
-
-}
-
 void Jogo::tSelect()
 {
 
@@ -230,25 +178,31 @@ void Jogo::tSelect()
 
 
 	// -------------------------------------     NOVO JOGO     -------------------------------------------------
-		// sortear quantidade de salas
-	int tipoSalas = uniRandEntre(9, 15);
-	input.criarSalas(tipoSalas);
+
 
 	// ler mapas
 	input.lerMapa(0, "bin/assets/tiles/mapa0.txt");
 	input.lerMapa(1, "bin/assets/tiles/mapa1.txt");
 
 
-	// mapa aleatorio
-	randMapa = uniRandEntre(0, 1);
-	input.setMapaAtual(randMapa);
+	// mapa 0
+	input.mapaInicial();
+	randMapa = input.getMapaAtual();
+
+	//randMapa = uniRandEntre(0, 1);
+	//input.setMapaAtual(randMapa);
 
 	input.resetMonsters();
 
+	// limpar a pilha
+	input.getPilha().clear();
 
 
 	// setar as posições de monstros e baus
 	pos();
+
+	// adicionar sala na pilha
+	input.getPilha().push(input.getSala());
 
 	// inicializar
 	input.iniciaMage("mage");
@@ -259,7 +213,7 @@ void Jogo::tSelect()
 
 	input.newBag();
 
-	
+
 
 	// desenhar a tela
 	chooseclass.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
@@ -315,6 +269,63 @@ void Jogo::tSelect()
 
 	}
 }
+
+
+void Jogo::tJogo()
+{
+
+	if (gTeclado.pressionou[TECLA_VOLTAR]) {
+		pilha.push(telaCancel);
+	}
+
+	// seta a variavel como o mapa atual
+	randMapa = input.getMapaAtual();
+
+	// desenhar o mapa
+	input.getMap(randMapa).desenhar();
+	/*input.getPilha().top().desenhar(); // dá erro de memória*/
+
+	// setar posição do jogador se o tile for porta e o mapa é o primeiro
+	input.setPosPorta();
+
+
+	// testar as colisões
+	colisoes();
+
+	// testar vida
+	if (input.getPlayerHP() <= 0) {
+		pilha.push(telaGO);
+	}
+
+
+	// atualizar e desenhar
+	input.atualizar();
+	input.atualizarBag();
+	input.desenhar();
+
+
+	// atualizar textos ---- 1 = HP, 2 = Atk, 3 = Def, 4 = Ouro
+	txt[1].setTxtHP(input.getPlayerHP(), input.getPlayerMaxHP());
+	txt[2].setTxt(std::to_string(input.getPlayerAtk()));
+	txt[3].setTxt(std::to_string(input.getPlayerDef()));
+	txt[4].setTxt(std::to_string(input.getPlayerGold()));
+
+	hud.desenhar(gJanela.getLargura() / 2, gJanela.getAltura() / 2);
+	
+	txt[0].desenhar(925, 185);
+	input.desenharItens();
+	
+	int tX, tY;
+	tX = 930;
+	tY = 240;
+	txt[1].desenhar(tX, tY);
+	txt[2].desenhar(tX, tY += 60);
+	txt[3].desenhar(tX, tY += 60);
+	txt[4].desenhar(tX, tY += 60);
+
+
+}
+
 
 void Jogo::tGameOver()
 {

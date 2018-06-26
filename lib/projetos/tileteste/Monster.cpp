@@ -62,6 +62,39 @@ void Monster::setNome(std::string nome)
 	this->nome = nome;
 }
 
+void Monster::movDir(int tile)
+{
+	if (tile == 1) {
+		x += 32;
+		sprite.setAnimacao(DIR);
+	}
+}
+
+void Monster::movEsq(int tile)
+{
+	if (tile == 1) {
+		x -= 32;
+		sprite.setAnimacao(ESQ);
+	}
+}
+
+void Monster::movCima(int tile)
+{
+	if (tile == 1) {
+		y -= 32;
+		sprite.setAnimacao(CIMA);
+	}
+}
+
+void Monster::movBaixo(int tile)
+{
+	if (tile == 1) {
+		y += 32;
+		sprite.setAnimacao(BAIXO);
+	}
+}
+
+
 std::string Monster::getCaminho()
 {
 	return caminho;

@@ -83,8 +83,10 @@ void InputJogo::atualizarMage()
 								podemover = false;
 								break;
 							}
-							else
+							else {
 								podemover = true;
+								moveMonster(i);
+							}
 
 						}
 					}
@@ -112,8 +114,12 @@ void InputJogo::atualizarMage()
 								podemover = false;
 								break;
 							}
-							else
+							else {
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 
 						}
 					}
@@ -142,7 +148,12 @@ void InputJogo::atualizarMage()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 
@@ -169,7 +180,12 @@ void InputJogo::atualizarMage()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 
@@ -220,7 +236,12 @@ void InputJogo::atualizarWarrior()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					
@@ -247,7 +268,12 @@ void InputJogo::atualizarWarrior()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					
@@ -274,7 +300,12 @@ void InputJogo::atualizarWarrior()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					
@@ -303,7 +334,12 @@ void InputJogo::atualizarWarrior()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					if (podemover)
@@ -350,7 +386,12 @@ void InputJogo::atualizarThief()
 								break;
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					if (podemover)
@@ -377,7 +418,12 @@ void InputJogo::atualizarThief()
 
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					if (podemover)
@@ -404,7 +450,12 @@ void InputJogo::atualizarThief()
 
 							}
 							else
+							{
 								podemover = true;
+
+								moveMonster(i);
+
+							}
 						}
 					}
 					if (podemover)
@@ -433,7 +484,12 @@ void InputJogo::atualizarThief()
 
 						}
 						else
+						{
 							podemover = true;
+
+							moveMonster(i);
+
+						}
 					}
 					
 					if (podemover)
@@ -512,7 +568,8 @@ void InputJogo::lerMonstros(std::string arq)
 	}
 }
 
-// inicializa os monstros para o mapa atual
+// inicializa os monstros para o mapa atual, antes de botar o mapa na pilha
+
 void InputJogo::iniciaMonstros(int n)
 {
 	if (!mapa[mapaAtual].getMonstersDone()) {
@@ -541,16 +598,12 @@ void InputJogo::iniciaMonstros(int n)
 		}
 
 		mapa[mapaAtual].setMonstersDone(true);
+		sala = mapa[mapaAtual];
 	}
+
+
 }
 
-void InputJogo::atualizarMonstros()
-{
-	for (int i = 0; i < mapa[mapaAtual].getNMonsters(); i++) {
-		mapa[mapaAtual].getMonster(i).setAnimBaixo();
-
-	}
-}
 
 void InputJogo::desenharMonstros()
 {
@@ -850,7 +903,6 @@ void InputJogo::addBonusItem(int bonusHP, int bonusMaxHP, int bonusDef, int bonu
 
 void InputJogo::atualizar()
 {
-	atualizarMonstros();
 
 	atualizarBatalha();
 
@@ -1257,8 +1309,50 @@ void InputJogo::resetMonsters()
 
 }
 
-void InputJogo::criarSalas(int qt)
+void InputJogo::mapaInicial()
 {
-	sala = new myTilemap[qt];
+	sala.ler("bin/assets/tiles/mapa0.txt");
+	mapaAtual = 0; // para verificar fim de jogo
 }
+
+Pilha<myTilemap> InputJogo::getPilha()
+{
+	return pilha;
+}
+
+myTilemap InputJogo::getSala()
+{
+	return sala;
+}
+
+void InputJogo::moveMonster(int i)
+{
+	int monsterXDir = (mapa[mapaAtual].getMonster(i).getX() / 32) + 1;
+	int monsterY = (mapa[mapaAtual].getMonster(i).getY()) / 32;
+	int monsterX = (mapa[mapaAtual].getMonster(i).getX()) / 32;
+	int monsterXEsq = (mapa[mapaAtual].getMonster(i).getX() /32) - 1;
+	int monsterYCima = (mapa[mapaAtual].getMonster(i).getY()/32) - 1;
+	int monsterYBaixo = (mapa[mapaAtual].getMonster(i).getY() /32) + 1;
+
+
+	int ran = uniRandEntre(1, 4);
+
+	if (ran == 1) { // direita
+		
+		mapa[mapaAtual].getMonster(i).movDir(mapa[mapaAtual].getPos(monsterXDir,monsterY));
+
+
+	}
+	else if (ran==2) // esquerda
+		mapa[mapaAtual].getMonster(i).movEsq(mapa[mapaAtual].getPos(monsterXEsq, monsterY));
+
+	else if (ran==3) // cima
+		mapa[mapaAtual].getMonster(i).movCima(mapa[mapaAtual].getPos(monsterX, monsterYCima));
+
+	else // baixo
+		mapa[mapaAtual].getMonster(i).movBaixo(mapa[mapaAtual].getPos(monsterX, monsterYBaixo));
+
+
+}
+
 

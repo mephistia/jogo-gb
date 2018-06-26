@@ -13,6 +13,14 @@ public:
 
 	void setId(int id);
 	void setNome(std::string nome);
+	void movDir(int tile);
+	void movEsq(int tile);
+	void movCima(int tile);
+	void movBaixo(int tile);
+
+
+
+
 	
 	std::string getCaminho();
 
@@ -20,6 +28,7 @@ public:
 	bool isSelected();
 	void select();
 	void unselect();
+
 
 private:
 	int id;

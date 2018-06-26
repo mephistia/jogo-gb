@@ -6,6 +6,7 @@
 #include "Monster.h"
 #include "Lista.h"
 #include "Itens.h"
+#include "Pilha.h"
 #include <fstream>
 
 
@@ -37,7 +38,6 @@ public:
 
 	void lerMonstros(std::string arq);
 	void iniciaMonstros(int n);
-	void atualizarMonstros();
 	void desenharMonstros();
 
 	int getMapaAtual();
@@ -101,11 +101,20 @@ public:
 	void unselectAll();
 	void resetMonsters();
 
-	void criarSalas(int qt);
+	void mapaInicial();
+
+	Pilha<myTilemap> getPilha();
+
+	myTilemap getSala();
+
+	void moveMonster(int i);
 
 private:
 	myTilemap mapa[6]; // tipo do mapa
-	myTilemap *sala;
+	myTilemap sala; // salva nova
+
+	Pilha<myTilemap> pilha;
+
 	//myTilemap *mapa;
 	int mapaAtual, nMonstros, nMapas; // mapas no total do jogo
 	Mage mage;

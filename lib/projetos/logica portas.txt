@@ -1,42 +1,47 @@
-foda-se a direção, só gera, existem corredores!!!
+ao invés de desenhar mapa[i], desenhar pilha.top().
+sala recebe caminho de 0
 
 
 gerar 6 tipos de mapas
 mapa[tipos]
 carregar todos os tipos
 
-r = random entre 9 e 15
-myTile salas[r]
-
 PRIMEIRA SALA SÓ TEM 1 PORTA DISPONÍVEL (para baixo)
 
 tipo = random entre 0 e 5
 
-salas[0] carrega com o txt do tipo.
+sala carrega com o txt do tipo 0 (inicial)
+salas de 9 a 15 são geradas em tempo de execução.
+
 
 setar o jogador na posição inicial (porta de cima)
 // criar método para setar o jogador na posição de volta
 
 
-adicionar salas[0] na pilha
+adicionar sala na pilha
 atual = 0;
 
 // loop lendo da pilha (top)
 
 se o jogador quiser andar para onde existe um tile de id 3 ou 4 // porta
 	se o jogador estiver andando para baixo (seu y > metade da janela)
-		se a pilha de redo estiver vazia e !sala[atual].getFim()
+		se a pilha de redo estiver vazia e !pilha.top().getFim()
 			gerar um tipo random
 			atual +=1
-			salas[atual] lê tipo random
+			sala lê tipo random
 			setar o jogador na posição inicial de acordo com o tipo
-			adicionar salas[atual] na pilha
+			
+			adicionar sala na pilha
 			se atual >9 && !=15
 				random = de 1 a 6 
 				se random == 1
-					salas[atual].setFim()
+					pilha.top().setFim()
 			se não, se atual == 15
-				salas[atual].setFim()
+				pilha.top().setFim()
+
+		se não, se pilha.top().getFim()
+			mostra a tela de win, pontuação (monstros eliminados) e requer digitar nome
+			para salvar pontuação no raking
 
 		se não, se isRedoEmpty == false
 			redo() // adiciona na pilha o top da pilha de redo
@@ -44,10 +49,11 @@ se o jogador quiser andar para onde existe um tile de id 3 ou 4 // porta
 			setar o jogador na posição inicial
 
 	se não, se o jogador estiver andando para cima (seu y < metade da janela)
-		se isRedoEmpty == true // se eu não voltei ainda
+		se atual > 0 // não chegou na sala 0
 			undo() // retorna para a sala anterior e adiciona a sala atual na pilha de redo
 			atual -=1
 			setar o jogador na posição de volta
+		
 			
 
 

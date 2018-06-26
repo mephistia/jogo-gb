@@ -19,7 +19,7 @@ public:
 
 	// destrutor
 	Pilha<T>::~Pilha() {
-
+		delete primeiro, ultimo, _undo;
 	}
 
 	// retornar tamanho
