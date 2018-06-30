@@ -1,5 +1,0 @@
-4
-1 Cristal assets/cristal.png 3 0 0
-2 Presa assets/presa.png 0 0 3
-3 Pedra assets/pedra.png 0 3 0
-4 Pergaminho assets/pergaminho.png 1 1 1

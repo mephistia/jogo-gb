@@ -1,0 +1,58 @@
+mapa0 = quadrado
+mapa1 = em L
+mapa2 = em 7
+mapa3 = em _|
+mapa4 = em ]
+mapa5 = em P
+
+
+
+int playerX, playerY;
+if (input.getClass()==1){
+	playerX = input.getMage().getX();
+	playerY = input.getMage().getY();
+}
+else if 2
+getwarriorx e y
+
+else if 3
+getthief x e y
+
+if (input.getSala(randmapa).getPos(playerX,playerY) == 3 || 4)
+
+se o y do jogador é maior q metade da janela
+e se a pilha de redo de salas estiver vazia e a sala não for final (atributo)
+gera rand a entre 0,5
+randmapa+=1
+sala[randmapa].ler rand
+se a for 0, setposinicial0
+se a for 1, setblabla1
+blabla2, blabla2
+
+inicializar os monstros e baus da sala´randmapa
+se randmapa>9 e !15, faz random entre 1,6
+se random for 1, sala[randmapa] é fim
+se não, se randmapa==15, é fim
+
+pilha.push sala[randmapa]
+
+
+e se a sala[randmapa] for fim, mostra win, pontuação e digita nome pra salvar
+
+se a redo nao for empty
+redo() puxa de volta a sala existente
+randmapa+=1
+blablabla0, blablabla0
+blablabla1, blablabla1
+
+e se o y do jgoador é menor q a metade
+se o randmapa > 0 (nao votlou pro inicio que nao tem como subir)
+undo() desfaz a sala mas add ela na pilha de redo
+randmapa-=1
+seta o jogador em uma posição de volta diferente de blablabla0
+
+
+
+
+
+
