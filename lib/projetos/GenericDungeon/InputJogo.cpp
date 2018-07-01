@@ -1166,9 +1166,7 @@ void InputJogo::deleteItem(int id)
 
 }
 
-//bool InputJogo::podePosicionar(int x, int y)
-//{
-//}
+
 
 void InputJogo::atualizarBatalha()
 {

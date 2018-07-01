@@ -269,9 +269,14 @@ public:
 		return pos->dado;
 	}
 
-	int Lista<T>::size(){
+	int Lista<T>::size() {
 		return tam;
-}
+	}	
+	// selecionar o primeiro
+	void Lista<T>::resetPos() {
+		pos = primeiro;
+	}
+
 
 private:
 	Nodo<T> *primeiro; // ponteiro que sempre aponta para o primeiro item da lista

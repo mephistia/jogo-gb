@@ -96,6 +96,7 @@ public:
 	// inventario
 	void addItem(int tipo);
 	void deleteItem(int id);
+
 	void desenharItens();
 
 	
